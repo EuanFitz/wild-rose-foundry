@@ -1,0 +1,65 @@
+<style>
+    body{
+        margin: 0;
+    }
+    header, footer{
+        font-size: large;
+        display: flex;
+        flex-direction: column;
+    }
+    footer{
+        background: #CC844A;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    header span, footer span{
+        display: block;
+    }
+    .brand, header nav ul li a{
+        text-decoration: none;
+        color: #FFF4EA;
+    }
+    footer, header div{
+        overflow: hidden;
+    }
+    header img, footer img{
+        height: 264px;
+    }
+    .brand{
+        font-family: 'Josefin Sans';
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 157px;
+    }
+    footer ul li{
+        list-style: none;
+        color:#FFF4EA;
+        display: flex;
+        align-items: center;
+        gap: .3rem;
+        margin: .3rem;
+        cursor: pointer;
+    }
+    footer ul li img{
+        height: 28px;
+        width:auto;
+    }
+</style>
+<footer>
+    <div>
+        <a class="brand" href="index.html">
+            <img src="media/Wildrose Foundry Logo.png" alt="">
+            <h1>Wild Rose <span>Foundry<span></h1>
+        </a>
+    </div>
+    <div>
+        <ul>
+            <li>Contact</li>
+            <li><img src="media/instagramicon.svg" alt="">@WildRoseFoundry</li>
+            <li><img src="media/twittericon.svg" alt="">@Foundry_WildRose</li>
+            <li><img src="media/facebookicon.svg" alt="">@TheWildRoseFoundry</li>
+        </ul>
+    </div>
+</footer>
