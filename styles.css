@@ -3,36 +3,19 @@
 body{
     font-family: Poppins, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
      sans-serif;
-}
-:root{
-
-}
-body{
     margin: 0;
-    font-family: Poppins;
     color: #FFF4EA;
     background: #D9D9D9;
 }
+
+/*Multiple style*/
 header, footer{
     font-size: large;
     display: flex;
     flex-direction: column;
 }
-header{
-    box-shadow: 0 3px 10px #00000070;
-    background-color: #8C8276;
-}
-header div{
-    display: grid;
-    align-items: center;
-    grid-template-columns: 450px 1fr;
+footer, header div{
     overflow: hidden;
-}
-.countdown{
-    margin: 0;
-    padding: .6rem;
-    background: #DC7F65;
-    text-align: center;
 }
 header img, footer img{
     height: 264px;
@@ -47,13 +30,33 @@ header span, footer span{
     align-items: center;
     height: 157px;
 }
-nav{
-    width: 100%;
-    padding: 0;
-}
 .brand, nav ul li a{
     text-decoration: none;
     color: #FFF4EA;
+}
+.brand img{
+    height: 264px;
+}
+
+/*Header styling*/
+header{
+    box-shadow: 0 3px 10px #00000070;
+    background-color: #8C8276;
+}
+header div{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 450px 1fr;
+}
+.countdown{
+    margin: 0;
+    padding: .6rem;
+    background: #DC7F65;
+    text-align: center;
+}
+nav{
+    width: 100%;
+    padding: 0;
 }
 header ul{
     text-shadow: 0 3px 2px #00000055;
@@ -69,6 +72,28 @@ header ul li{
     cursor: pointer;
     padding: .6rem;
 }
+
+/*Footer styling*/
+footer{
+    background: #CC844A;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+footer ul li{
+    list-style: none;
+    color:#FFF4EA;
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    margin: .3rem;
+    cursor: pointer;
+}
+footer ul li img{
+    height: 28px;
+    width:auto;
+}
+/*Media quiries*/
 @media (max-width: 900px){
     header div{
         display: flex;
