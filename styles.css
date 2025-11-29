@@ -1,23 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Jaldi:wght@400;700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
+:root{
+    --header: #8C8276;
+    --main: #FFE1C7;
+    --card: #ffffff50;
+    --darktext: #3C3833;
+    --light: #FFF4EA;
+    --button: #CC844A;
+    --box-shadow: 4px 4px 10px #00000070;
+    --text-shadow: 0 3px 2px #00000055;
+    --christmas: #1B7913;
+}
 body{
     font-family: Poppins, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
      sans-serif;
     margin: 0;
-    color: #FFF4EA;
-    background: #D9D9D9;
+    background: var(--main);
 }
-
 /*Multiple style*/
 header, footer{
     font-size: large;
     display: flex;
     flex-direction: column;
 }
-footer, header div{
+footer{
     overflow: hidden;
 }
-header img, footer img{
+footer img{
     height: 264px;
 }
 header span, footer span{
@@ -30,28 +38,29 @@ header span, footer span{
     align-items: center;
     height: 157px;
 }
-.brand, nav ul li a{
+header a, footer a{
     text-decoration: none;
-    color: #FFF4EA;
-}
-.brand img{
-    height: 264px;
-}
-
+    color: var(--light);
+}   
 /*Header styling*/
 header{
-    box-shadow: 0 3px 10px #00000070;
-    background-color: #8C8276;
+    box-shadow: var(--text-shadow);
+    background-color: var(--header);
 }
 header div{
     display: grid;
     align-items: center;
     grid-template-columns: 450px 1fr;
 }
+header > div a img{
+    max-height: 100%;
+    padding-right: 1.2rem;
+    width:auto;
+}
 .countdown{
     margin: 0;
     padding: .6rem;
-    background: #DC7F65;
+    background: var(--christmas);
     text-align: center;
 }
 nav{
@@ -59,7 +68,7 @@ nav{
     padding: 0;
 }
 header ul{
-    text-shadow: 0 3px 2px #00000055;
+    text-shadow: var(--text-shadow);
     list-style: none;
     display: flex;
     height: 100%;
@@ -72,17 +81,26 @@ header ul li{
     cursor: pointer;
     padding: .6rem;
 }
-
+main{
+    background: var(--main);
+}
+/* Card styling */
+.card{
+    background: var(--card);
+    border-radius: 15px;
+    box-shadow: var(--box-shadow);
+}
 /*Footer styling*/
 footer{
-    background: #CC844A;
+    width: 100%;
+    background: var(--button);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 footer ul li{
     list-style: none;
-    color:#FFF4EA;
+    color: var(--light);
     display: flex;
     align-items: center;
     gap: .3rem;
@@ -92,6 +110,12 @@ footer ul li{
 footer ul li img{
     height: 28px;
     width:auto;
+}
+footer{
+    overflow: hidden;
+}
+footer img{
+    height: 264px;
 }
 /*Media quiries*/
 @media (max-width: 900px){

@@ -1,0 +1,1 @@
+SELECT p.*,v.name FROM `products` p JOIN `vendors` v ON p.vendor_id = v.vendor_id;

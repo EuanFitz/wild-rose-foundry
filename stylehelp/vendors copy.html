@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor name || WildRose</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        main{
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+        }
+        main img{
+            max-width: 300px;
+            justify-self: flex-end;
+        }
+        .card{
+            margin: 4rem;
+            padding: 1.5rem;
+            display:flex;
+            flex-direction: column;
+        }
+        .card .contact{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: flex-end;
+            justify-self: flex-end;
+        }
+        .contact a, .contact p{
+            display: flex;
+            max-width: 100%;
+            align-items: center;
+        }
+        .contact a{
+            justify-self: flex-end;
+        }
+        .contact a img{
+            max-width: 40px;
+        }
+
+    </style>
+</head>
+<body>
+    <main>
+        <img src="/media/logos/Prairie Clay Logo.png" alt="">
+        <div class="card">
+            <h2>Prairie Clay Co.</h2>
+            <p>Booth: A12</p>
+            <p>Prairie Clay Co. is a small studio crafting wheel-thrown ceramics inspired by prairie skies, river stones, and daily rituals. Each mug, bowl, and planter is made in small batches, with subtle glaze variations that highlight the character of the clay. From morning coffee to evening tea, Prairie Clay Co. pieces are designed to be used and loved every day.</p>
+            <div class="contact">
+                <p>Email: <a href="email">hello@prairieclayco.ca</a></p>
+                <a href="https://www.instagram.com/prairieclayco/"><img src="/media/logos/instagramicon.svg" alt="">@prairieclayco</a></div>
+            </div>
+    </main>
+</body>
+</html>
