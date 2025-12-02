@@ -9,16 +9,19 @@
         main{
             display: grid;
             grid-template-columns: 1fr 2fr;
+            border: 1px solid red;
         }
         main img{
             max-width: 300px;
             justify-self: flex-end;
+            border: 1px solid blue;
         }
         .card{
             margin: 4rem;
             padding: 1.5rem;
             display:flex;
             flex-direction: column;
+            border: 1px solid red;
         }
         .card .contact{
             display: grid;
@@ -29,10 +32,14 @@
         .contact a, .contact p{
             display: flex;
             max-width: 100%;
-            align-items: center;
+            align-items: flex-end;
+            padding: 0;
+            margin: 0;
+            
         }
-        .contact a{
+        .contact{
             justify-self: flex-end;
+            border: 1px solid green;
         }
         .contact a img{
             max-width: 40px;

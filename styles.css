@@ -17,6 +17,10 @@ body{
     background: var(--main);
 }
 /*Multiple style*/
+a{
+    text-decoration: none;
+    color: var(--darktext);
+}
 header, footer{
     font-size: large;
     display: flex;
@@ -39,7 +43,6 @@ header span, footer span{
     height: 157px;
 }
 header a, footer a{
-    text-decoration: none;
     color: var(--light);
 }   
 /*Header styling*/
