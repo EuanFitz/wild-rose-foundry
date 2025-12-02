@@ -20,7 +20,7 @@ if(!isset($_SESSION['products'])){
     }
 }
 if(isset($_POST['clear'])){
-    session_destroy();
+    unset($_SESSION['products']);
 }
 }
 ?>
@@ -35,6 +35,9 @@ if(isset($_POST['clear'])){
 <body>
     <?php
     include('header.php');
+    ?>
+    <?php
+        if(isset($_SESSION['products'])){
     ?>
     <section class="card">
         <?php 
@@ -54,8 +57,8 @@ if(isset($_POST['clear'])){
         <p>Tax (5%)</p>
         <p>Total</p>
         <form action="order.php" method="post">
-            <input type="hidden" value="" name="clear">
-            <button type="submit">
+            <input type="hidden" name="clear">
+            <button type="submit">Clear Cart</button>
         </form>
     </section>
     <form class="card" action="order.php" method="post">
@@ -71,10 +74,13 @@ if(isset($_POST['clear'])){
         <input type="hidden" name="items" value=""> -->
         <button type="submit">Complete Order</button>
     </form>
-    <h2>Thank you User!</h2>
-    <h3>Your order number is #1404</h3>
-    <p>Please have your order number ready for pickup.</p>
     <?php
+        }else{
+    ?>
+    <p>Your cart is empty!</p>
+    <a href="products.php">Keep shopping</a>
+    <?php
+        }
     include('footer.php');
     ?>
 </body>
