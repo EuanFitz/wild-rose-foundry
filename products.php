@@ -1,0 +1,162 @@
+<?php
+require("connection.php");
+$queryproduct = "SELECT p.* FROM `products` p 
+JOIN `vendors` v ON p.vendor_id = v.vendor_id 
+JOIN `product_category` pc ON p.product_id = pc.product_id 
+JOIN `categories` c ON pc.category_id = c.category_id 
+WHERE 1";
+$vendoroption_query = "SELECT * FROM `vendors`";
+$category_query = "SELECT * FROM `categories`";
+
+$groupproduct = " GROUP BY p.product_id";
+$wherequery = '';
+
+$products_per_page = 24;
+
+$rows_num = mysqli_query($connection, "SELECT COUNT(*) FROM products");
+$rowstotal = mysqli_fetch_assoc($rows_num);
+$count = $rowstotal['COUNT(*)'];
+
+$links_needed= ceil($count/$products_per_page);
+if(!isset($_GET['start'])){
+    $start = 0;
+}else{
+    $start = $_GET['start'];
+}
+$limit = " LIMIT $start, $products_per_page"
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products|| WildRose.com</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        form{
+            background: #BFBCB8;
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 10px #00000070;
+            padding: 1rem;
+        }
+        form input[type=submit]{
+            background: none;
+            border: none;
+            font-size: large;
+            cursor: pointer;
+            color: #FFF4EA;
+            padding: .8rem;
+        }
+        form input[type=submit]:hover{
+            background: #BFBCB8;
+        } 
+        main{
+            display: grid;
+            grid-template-columns: repeat(3, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 1.5rem;
+        }
+        main a{
+            text-decoration: none;
+        }
+        main article {
+            border: 3px solid #8C8276;
+            width: 100%;
+            border-radius: 10px 10px 0 0;
+            overflow: hidden;
+            background:#ffffff50;
+        }
+        main article > img{
+            max-width: 100%;
+            height: auto;
+        }
+        main a article h2, main a article p{
+            padding-left: .5rem;
+        }
+        /* Repeating styles */
+        main a, form{
+         color: #3C3833;
+        }
+    </style>
+</head>
+<body>
+    <?php
+    include("header.php");
+    ?>
+    <form method="post" action="products.php">
+        <div>
+        <label for="category">Catagory</label>
+        <select id="category" name="category">
+            <option value="">All Categories</option>
+            <?php
+            $categorysql = mysqli_query($connection,$category_query);
+            while($cat = mysqli_fetch_assoc($categorysql)){
+            ?>
+            <option value="<?php echo $cat['category_id']; ?>"><?php echo $cat['name']; ?>
+            </option>           
+            <?php
+            }
+            ?>
+
+        </select>
+        </div>
+        <div>
+        <label for="vendor">Vendor</label>
+        <select name="vendor" id="vendor">
+            <option value="">All Vendors</option>
+        <?php 
+            $vendoroptionsql = mysqli_query($connection,$vendoroption_query);
+            while($vendor = mysqli_fetch_assoc($vendoroptionsql)){
+        ?>
+            <option value="<?php echo $vendor['vendor_id'];?>"><?php echo $vendor['name'];?> </option>';
+        <?php
+        }
+        ?>
+
+    
+        ?>
+        </select>
+        </div>
+        <div>
+            <span>Price</span>
+            <label for="low-high">$-$$$</label>
+            <input type="radio" name="price" id="low-high" value="low-high">
+            <label for="high-low">$$$-$</label>
+            <input type="radio" name="price" id="high-low" value="high-low">
+        </div>
+        <input type="submit" value="Go">
+    </form>
+    <main>
+        <?php 
+        $productsql = mysqli_query($connection,($queryproduct.= $groupproduct.= $limit));
+        if(mysqli_num_rows($productsql)>0){
+        while($product = mysqli_fetch_assoc($productsql)){
+            $prod_id = $product["product_id"];
+
+            $vendor_query = " SELECT * FROM `vendors` v JOIN `products` p ON v.vendor_id = p.vendor_id WHERE p.product_id = $prod_id ";
+            $vendorsql = mysqli_query($connection,$vendor_query);
+            $vendor = mysqli_fetch_assoc($vendorsql);
+            ?>
+        <a href="details.php?id=<?php echo $prod_id;?>">   
+            <article>
+                <img src="media/<?php echo $product["image"];?>" alt="<?php echo $product["img_alt"];?>" width="1024" height="1024">
+                <h2><?php echo $product["name"];?></h2>
+                <p><?php echo $vendor['name']?></p>
+                <p><?php echo $product["price"];?></p>
+            </article>
+        </a>
+        <?php
+    }
+}
+        for($i=0; $i<$links_needed; $i++){
+            echo '<a href="products.php?start='.$i*$products_per_page.'">'.($i+1).'</a>';
+        }
+    ?>
+    </main>
+    <?php
+    include("footer.php");
+    ?>
+</body>
+</html>
