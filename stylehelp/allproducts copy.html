@@ -6,13 +6,6 @@
     <title>Products|| WildRose.com</title>
     <link rel="stylesheet" href="/styles.css">
     <style>
-        main{
-            display: grid;
-            grid-template-columns: repeat(3, minmax(200px, 1fr));
-            gap: 2rem;
-            padding: 2rem 1.5rem;
-            grid-row: auto;
-        }
         form{
             background: #BFBCB8;
             display:flex;
@@ -32,21 +25,28 @@
         form input[type=submit]:hover{
             background: #BFBCB8;
         } 
-        main section{
+        main{
+            display: grid;
+            grid-template-columns: repeat(3, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 1.5rem;
+        }
+        main article {
             border: 3px solid #8C8276;
             width: 100%;
             border-radius: 10px 10px 0 0;
             overflow: hidden;
+            background:#ffffff50;
         }
-        main section > img{
+        main article > img{
             max-width: 100%;
             height: auto;
         }
-        main section h2, main section p{
+        main a article h2, main a article p{
             padding-left: .5rem;
         }
         /* Repeating styles */
-        section a, form{
+        main a, form{
          color: #3C3833;
         }
     </style>
@@ -94,12 +94,36 @@
     </form>
     <main>
         <a href="proudct.php?id=?php echo $prod_id;?>">   
-            <section>
+            <article>
                 <img src="/media/brw-board-maple.png" alt="" width="1024" height="1024">
                 <h2>?php echo $product["name"];?></h2>
                 <p>?php echo $vendor['name']?></p>
                 <p>?php echo $product["price"];?></p>
-            </section>
+            </article>
+        </a>
+        <a href="proudct.php?id=?php echo $prod_id;?>">   
+            <article>
+                <img src="/media/brw-board-maple.png" alt="" width="1024" height="1024">
+                <h2>?php echo $product["name"];?></h2>
+                <p>?php echo $vendor['name']?></p>
+                <p>?php echo $product["price"];?></p>
+            </article>
+        </a>
+        <a href="proudct.php?id=?php echo $prod_id;?>">   
+            <article>
+                <img src="/media/brw-board-maple.png" alt="" width="1024" height="1024">
+                <h2>?php echo $product["name"];?></h2>
+                <p>?php echo $vendor['name']?></p>
+                <p>?php echo $product["price"];?></p>
+            </article>
+        </a>
+        <a href="proudct.php?id=?php echo $prod_id;?>">   
+            <article>
+                <img src="/media/brw-board-maple.png" alt="" width="1024" height="1024">
+                <h2>?php echo $product["name"];?></h2>
+                <p>?php echo $vendor['name']?></p>
+                <p>?php echo $product["price"];?></p>
+            </article>
         </a>
     </main>
     <footer>

@@ -6,11 +6,14 @@
     <title>Vendor name || WildRose</title>
     <link rel="stylesheet" href="/styles.css">
     <style>
-        main{
+        section{
             display: grid;
             grid-template-columns: 1fr 2fr;
         }
-        main img{
+        section a{
+            display: block;
+        }
+        section img{
             max-width: 300px;
             justify-self: flex-end;
         }
@@ -41,16 +44,32 @@
     </style>
 </head>
 <body>
+    <form action="">
+        <select name="" id="">
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+        </select>
+    </form>
     <main>
-        <img src="/media/logos/Prairie Clay Logo.png" alt="">
-        <div class="card">
-            <h2>Prairie Clay Co.</h2>
-            <p>Booth: A12</p>
-            <p>Prairie Clay Co. is a small studio crafting wheel-thrown ceramics inspired by prairie skies, river stones, and daily rituals. Each mug, bowl, and planter is made in small batches, with subtle glaze variations that highlight the character of the clay. From morning coffee to evening tea, Prairie Clay Co. pieces are designed to be used and loved every day.</p>
-            <div class="contact">
-                <p>Email: <a href="email">hello@prairieclayco.ca</a></p>
-                <a href="https://www.instagram.com/prairieclayco/"><img src="/media/logos/instagramicon.svg" alt="">@prairieclayco</a></div>
-            </div>
+        <a href="">
+            <section>
+            <img src="/media/logos/Prairie Clay Logo.png" alt="">
+                <div class="card">
+                    <h2>Prairie Clay Co.</h2>
+                    <p>Booth: A12</p>
+                    <p>Prairie Clay Co. is a small studio crafting wheel-thrown ceramics inspired by prairie skies, river stones, and daily rituals. Each mug, bowl, and planter is made in small batches, with subtle glaze variations that highlight the character of the clay. From morning coffee to evening tea, Prairie Clay Co. pieces are designed to be used and loved every day.</p>
+                    <div class="contact">
+                        <p>Email: <a href="email">hello@prairieclayco.ca</a></p>
+                        <a href="https://www.instagram.com/prairieclayco/"><img src="/media/logos/instagramicon.svg" alt="">@prairieclayco</a></div>
+                    </div>
+            </section>
+         </a>
     </main>
+    <script>
+        function submitForm(){
+            document.querySelector('form').submit;
+        }
+    </script>
 </body>
 </html>
