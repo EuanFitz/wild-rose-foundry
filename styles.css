@@ -48,6 +48,12 @@ a{
 header a, footer a{
     color: var(--light);
 }   
+button{
+    color:#FFF4EA;
+    background-color: #CC844A;
+    border-radius: 8px;
+    padding: 0 2rem;
+}
 
 /*Header styling*/
 header{

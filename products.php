@@ -1,5 +1,6 @@
 <?php
-require("connection.php");
+include('includes/global.php');
+require('includes/connection.php');
 $queryproduct = "SELECT p.* FROM `products` p 
 JOIN `vendors` v ON p.vendor_id = v.vendor_id 
 JOIN `product_category` pc ON p.product_id = pc.product_id 
@@ -83,7 +84,7 @@ $limit = " LIMIT $start, $products_per_page"
 </head>
 <body>
     <?php
-    include("header.php");
+    include("includes/header.php");
     ?>
     <form method="post" action="products.php">
         <div>
@@ -156,7 +157,7 @@ $limit = " LIMIT $start, $products_per_page"
     ?>
     </main>
     <?php
-    include("footer.php");
+    include("includes/footer.php");
     ?>
 </body>
 </html>

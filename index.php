@@ -1,3 +1,7 @@
+<?php
+include('includes/global.php');
+require('includes/connection.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,10 +13,10 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <?php include('header.php');?>
+    <?php include('includes/header.php');?>
     <main>
         
     </main>
-    <?php include('footer.php');?>
+    <?php include('includes/footer.php');?>
 </body>
 </html>

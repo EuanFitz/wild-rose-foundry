@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vendor name || WildRose</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
         section{
             display: grid;
             grid-template-columns: 1fr 2fr;
-        }
-        section a{
-            display: block;
         }
         section img{
             max-width: 300px;
@@ -40,36 +37,60 @@
         .contact a img{
             max-width: 40px;
         }
-
     </style>
 </head>
 <body>
-    <form action="">
-        <select name="" id="">
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-        </select>
+    <header>
+    <p class="countdown">Days till christmas</p>
+    <div>
+    <a class="brand" href="index.html">
+        <img src="media/logos/wildrose-foundry-logo.png" alt="">
+        <h1>Wild Rose <span>Foundry<span></h1>
+    </a>
+    <nav>
+        <ul>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="products.php">Products</a></li>
+            <li><a href="vendors.php">Vendors</a></li>
+            <li><a href="order.php">My Cart</a></li>
+        </ul>
+    </nav>
+    </div>
+</header>    <form action="vendors.php" method="GET">
+        <select name="id" id="vendor">
+            <option value="">All Vendors</option>
+        <option value="1">Prairie Clay Co.</option><option value="2">Bow River Woodworks</option><option value="3">Hearthcraft Linens</option><option value="4">Trailhead Leatherworks</option><option value="5">Summit & Flame Co.</option><option value="6">Thimble & Thicket</option><option value="7">Wildflower Bath & Body</option>        <input type="submit" value="Go">
     </form>
     <main>
-        <a href="">
-            <section>
-            <img src="/media/logos/Prairie Clay Logo.png" alt="">
-                <div class="card">
-                    <h2>Prairie Clay Co.</h2>
-                    <p>Booth: A12</p>
-                    <p>Prairie Clay Co. is a small studio crafting wheel-thrown ceramics inspired by prairie skies, river stones, and daily rituals. Each mug, bowl, and planter is made in small batches, with subtle glaze variations that highlight the character of the clay. From morning coffee to evening tea, Prairie Clay Co. pieces are designed to be used and loved every day.</p>
-                    <div class="contact">
-                        <p>Email: <a href="email">hello@prairieclayco.ca</a></p>
-                        <a href="https://www.instagram.com/prairieclayco/"><img src="/media/logos/instagramicon.svg" alt="">@prairieclayco</a></div>
-                    </div>
+                    <section>
+            <a href="vendors.php?id=1"><img src="media/logos/prairieclayco.png" alt="An image of the Prairie Clay co. Logo."></a>
+            <div class="card">
+                    <a href="vendors.php?id=1">
+                        <h2>Prairie Clay Co.</h2>
+                        <p>A12</p>
+                        <p>Prairie Clay Co. is a small studio crafting wheel-thrown ceramics inspired by prairie skies, river stones, and daily rituals. Each mug, bowl, and planter is made in small batches, with subtle glaze variations that highlight the character of the clay. From morning coffee to evening tea, Prairie Clay Co. pieces are designed to be used and loved every day.</p>
+                    </a>
+                        <div class="contact">
+                            <p>Email: <a href="email">hello@prairieclayco.ca</a></p>
+                            <a href="https://www.instagram.com/prairieclayco/"><img src="media/logos/instagramicon.svg" alt="">@prairieclayco</a>
+                        </div>
+                </div>
             </section>
-         </a>
-    </main>
-    <script>
-        function submitForm(){
-            document.querySelector('form').submit;
-        }
-    </script>
-</body>
+             </main>
+    <footer>
+    <div>
+        <a class="brand" href="index.html">
+            <img src="media/logos/wildrose-foundry-logo.png" alt="">
+            <h1>Wild Rose <span>Foundry<span></h1>
+        </a>
+    </div>
+    <div>
+        <ul>
+            <li>Contact</li>
+            <li><img src="media/logos/instagramicon.svg" alt="">@WildRoseFoundry</li>
+            <li><img src="media/logos/twittericon.svg" alt="">@Foundry_WildRose</li>
+            <li><img src="media/logos/facebookicon.svg" alt="">@TheWildRoseFoundry</li>
+        </ul>
+    </div>
+</footer></body>
 </html>

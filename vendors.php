@@ -1,5 +1,6 @@
 <?php
-require("connection.php");
+include('includes/global.php');
+require('includes/connection.php');
 $query = "SELECT * FROM vendors WHERE 1";
 $where = '';
 if(isset($_GET['id']) && $_GET['id'] !== ''){
@@ -50,7 +51,7 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
 </head>
 <body>
     <?php
-    include ("header.php");
+    include ("includes/header.php");
     ?>
     <form action="vendors.php" method="GET">
         <select name="id" id="vendor">
@@ -87,7 +88,7 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
          ?>
     </main>
     <?php
-    include ("footer.php");
+    include ("includes/footer.php");
     ?>
 </body>
 </html>
