@@ -70,7 +70,7 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
         while($vendor = mysqli_fetch_assoc($vendoroptionsql)){
             ?>
             <section>
-            <a href="vendors.php?id=<?php echo $vendor['vendor_id'];?>"><img src="media/logos/<?php echo $vendor['logo']?>" alt="<?php echo $vendor['logo_alt'];?>"></a>
+            <a href="vendors.php?id=<?php echo $vendor['vendor_id'];?>"><img src="media/logos/<?php echo $vendor['logo']?>" alt="<?php echo $vendor['logo_alt'];?>" height="1024" width="1024"></a>
             <div class="card">
                     <a href="vendors.php?id=<?php echo $vendor['vendor_id'];?>">
                         <h2><?php echo $vendor['name'];?></h2>

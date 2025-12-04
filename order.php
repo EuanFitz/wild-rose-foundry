@@ -103,7 +103,7 @@ $price = 0;
                 $price += ((float)$product['price']);
             ?>
             <article>
-                <img src="media/thumb/<?php echo $product['image']; ?>" alt="<?php echo $product['img_alt']; ?>">
+                <img src="media/thumb/<?php echo $product['image']; ?>" alt="<?php echo $product['img_alt']; ?>" height="250" width="250">
                 <h3><?php echo $product['name']; ?></h3>
                 <p><?php echo $product['price']; ?></p>
             </article>

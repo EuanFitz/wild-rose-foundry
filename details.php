@@ -75,7 +75,7 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
             $product = mysqli_fetch_assoc($productsql)
         ?>
         <div>
-            <img class="productimg" src="media/<?php echo $product['image'];?>" alt="<?php echo $product['img_alt'];?>" width="" height="">
+            <img class="productimg" src="media/<?php echo $product['image'];?>" alt="<?php echo $product['img_alt'];?>" width="1024" height="1024">
             <div class="thumb">
                 <?php
                 $variantsql = mysqli_query($connection,$varquery);
