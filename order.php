@@ -1,12 +1,48 @@
 <?php
 include('includes/global.php');
 require('includes/connection.php');
-if(isset($_POST['id'])){
-    $_SESSION['products'][] = $_POST['id'];
+if(isset($_POST['id'])) {
+    $product = [
+        "id" => $_POST['id'],
+        "variant" => $_POST['var']
+    ];
 }
+$ids = array_column($_SESSION['products'], 'id');
+$variants = array_column($_SESSION['products'], 'variant');
+if(isset($product)){
+    if(!in_array($product['id'],$ids)) {
+    $_SESSION['products'][] = $product;
+}
+}
+// if(isset($_POST['id'])){
+//     if(!in_array($_POST['id'], $_SESSION['products'])) {
+//             $_SESSION['products'][] = [
+//                 "id" => $_POST['id'],
+//                 "variant" => $_POST['var']
+//             ]
+//     }
+//     if(!in_array($_POST['var'], $_SESSION['variants'])){
+//         $_SESSION['variants'][] = $_POST['var']; 
+//     }
+// }
+
+$ids = implode(", ",$ids);
+$variants = implode(", ",$variants);
+
+print_r($ids);
+print_r($variants);
+
+
+// print_r("(".$ids.")");
+// print_r("(".$variants.")");
+//I have a issue where the keys in the array arent imploding so it wont convert to a string properly..
+//Potential fix would be to make a second array using variants but then I would have to find a way to associate them back to the product id before completing the order. 
+//End session
 if(isset($_POST['clear'])){
     session_destroy();
 }
+
+//Variables
 $price = 0;
 
 ?>
@@ -55,6 +91,7 @@ $price = 0;
         .card{
             padding: 2rem;
         }
+ 
     </style>
 </head>
 <body>
@@ -67,37 +104,44 @@ $price = 0;
         //Create order
         if(isset($_POST['complete'])){
             //Order information
-            $first = $_POST['first'];
-            $last = $_POST['last'];
-            $email = $_POST['email'];
-            $phone = $_POST['phone'];
-            $items = $_POST['items'];
-            $total = $_POST['price'];
+            $first = mysqli_real_escape_string($connection,$_POST['first']);
+            $last = mysqli_real_escape_string($connection,$_POST['last']);
+            $email = mysqli_real_escape_string($connection,$_POST['email']);
+            $phone = mysqli_real_escape_string($connection,$_POST['phone']);
+            $total = mysqli_real_escape_string($connection,$_POST['price']);
             //Create order
-            $order_query = "INSERT INTO `orders` (`order_id`, `first_name`, `last_name`, `phone`, `email`, `items`, `total`) VALUES (NULL, '$first', '$last', '$phone', '$email', '$items', '$total')";
+            $order_query = "INSERT INTO `orders` (`order_id`, `first_name`, `last_name`, `phone`, `email`, `total`) VALUES (NULL, '$first', '$last', '$phone', '$email', '$total')";
             $ordersql = mysqli_query($connection,$order_query);
 
             //Show order number
             $getorder_query = "SELECT * FROM orders WHERE phone = $phone ORDER BY order_id DESC LIMIT 1";
             $getordersql = mysqli_query($connection,$getorder_query);
             $order = mysqli_fetch_assoc($getordersql);
+            $orderid = (int)$order['order_id'];
             
-            //End session
-            session_destroy();
+            //Populate order_product_variable page
+            foreach($_SESSION['products'] as $key => $item){
+                $order_product = (int)$_SESSION['products'][$key]['id'];
+                $order_variant = (int)$_SESSION['products'][$key]['variant'];
+                $orderproductquery = "INSERT INTO `order_product_variant` (`order_id`, `product_id`, `variant_id`) VALUES ($orderid,$order_product, NULLIF($order_variant,0))";
+                //echo $orderproductquery;
+                mysqli_query($connection,$orderproductquery);
+            }
             ?>
             <h3>Thank you <?php echo $first; ?> for your order!</h3>
             <p>Your order number is: <?php echo $order['order_id']; ?></p>
             <p>Please have your order number ready on pickup.</p>
             <a href="products.php">Keep shopping</a>
-
+            
             <?php
+            //End session
+            session_destroy();
         }else{
              if((count($_SESSION['products']))> 0){
-                $ids = implode(", ",$_SESSION['products']);
                 $query = "SELECT * FROM `products` WHERE product_id IN($ids)";
                 $productsql = mysqli_query($connection,$query);
         ?>
-        <section class="card scroll">
+        <section class="card">
             <?php
              while($product = mysqli_fetch_assoc($productsql)){
                 $price += ((float)$product['price']);
@@ -141,7 +185,9 @@ $price = 0;
                     <input type="tel" name="phone" id="phone" required>
                 </div>
                 <input type="hidden" name="items" value="<?php echo $ids;?>">
+                <input type="hidden" name= "order_var" value="<?php echo $variants;?>">
                 <input type="hidden" name="price" value="<?php echo $total;?>">
+                <
                 <button type="submit" name="complete">Complete Order</button>
             </form>
         </section>

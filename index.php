@@ -14,11 +14,22 @@ $mainsql = mysqli_query($connection,$query);
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Wild Rose Foundry || WildRose.com</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .container{
+            display:flex;
+            overflow: hidden;
+            overflow-x: scroll;
+            max-height: 70vh;
+            width: 65vw;
+            gap: 1.5rem;
+            margin: 5rem auto;
+        }
+    </style>
 </head>
 <body>
     <?php include('includes/header.php');?>
     <main>
-        <ul>
+        <ul class="container card">
             <?php
                 while($featured = mysqli_fetch_assoc($mainsql)){
                     $vendorid = $featured['vendor_id'];
@@ -35,6 +46,7 @@ $mainsql = mysqli_query($connection,$query);
                 }
             ?>
         </ul>
+        <p>Nestled in the heart of Alberta, Wild Rose Foundry is a modern artisan collective celebrating the creativity and craftsmanship of local makers. Every weekend, its converted warehouse space buzzes with energy — filled with pottery, jewelry, textiles, candles, and small-batch foods crafted by independent vendors from across the province. Shoppers come for the quality and stay for the sense of community, discovering new makers every visit. The foundry has one location in Diamond Valley right now, but hopes to expand to multiple locations across the province by 2028.</p>
     </main>
     <?php include('includes/footer.php');?>
 </body>

@@ -51,7 +51,7 @@
     <p class="countdown">Days till christmas</p>
     <div>
     <a class="brand" href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/index.html">
-        <img src="details%20copy_files/wildrose-foundry-logo.png" alt="">
+        <!-- <img src="/media/logos/wildrose-foundry-logo.avif" alt=""> -->
         <h1>Wild Rose <span>Foundry<span></span></span></h1>
     </a>
     <nav>
@@ -65,12 +65,12 @@
     </div>
 </header>    <main>
                 <div>
-            <img class="productimg" src="details%20copy_files/pcc-mug-16-river.png" alt="A product photo of 16oz Mug from Prairie Clay Co.." width="" height="">
-            <div class="thumb">
-                                <button><img src="details%20copy_files/pcc-mug-16-river-thumb.png" height="250" width="250" alt="A product photo of 16oz Mug from Prairie Clay Co. in the River colour."></button>
-                                <button><img src="details%20copy_files/pcc-mug-16-sand-thumb.png" height="250" width="250" alt="A product photo of 16oz Mug from Prairie Clay Co. in the Sand colour."></button>
-                                <button><img src="details%20copy_files/pcc-mug-16-forest-thumb.png" height="250" width="250" alt="A product photo of 16oz Mug from Prairie Clay Co. in the Forest colour."></button>
-                                <button><img src="details%20copy_files/pcc-mug-16-ember-thumb.png" height="250" width="250" alt="A product photo of 16oz Mug from Prairie Clay Co. in the Ember colour."></button>
+            <img class="productimg" src="/media/pcc-mug-16-river.avif" alt="A product photo of 16oz Mug from Prairie Clay Co.." width="" height="">
+            <div class="thumb" id="thumb">
+                                <button><img id="4" src="/media/thumb/pcc-mug-16-river.avif" height="250" width="250" alt="A product photo of 16oz Mug from Prairie Clay Co. in the River colour."></button>
+                                <button><img id="2" src="/media/thumb/pcc-mug-16-sand.avif" height="250" width="250" alt="A product photo of 16oz Mug from Prairie Clay Co. in the Sand colour."></button>
+                                <button><img id="1" src="/media/thumb/pcc-mug-16-forest.avif" height="250" width="250" alt="A product photo of 16oz Mug from Prairie Clay Co. in the Forest colour."></button>
+                                <button><img id="44" src="/media/thumb/pcc-mug-16-ember.avif" height="250" width="250" alt="A product photo of 16oz Mug from Prairie Clay Co. in the Ember colour."></button>
                             </div>
         </div>
         <div class="productinfo">
@@ -112,4 +112,15 @@
         </ul>
     </div>
 </footer>
+<script>
+const imagesrc = document.querySelector('main div img');
+const newUrl = window.location.href.toString();
+thumb.addEventListener('click', (e) =>{
+    console.log(e.target.id);
+    console.log(e.target.attributes.src);
+    const varid = e.target.id;
+    const imgsrc = e.target.src;
+    imagesrc.src = imgsrc.replace(`/thumb`, '');
+    window.location.href = (`${newUrl}?variant?=${varid}`); 
+});</script>
 </body></html>

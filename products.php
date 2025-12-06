@@ -143,9 +143,6 @@ if(isset($_POST['price'])){
             <input type="radio" name="price" id="low-high" value="ASC">
             <label for="high-low">$$$-$</label>
             <input type="radio" name="price" id="high-low" value="DESC">
-            <?php
-                echo "<p>$fullquery</p>";
-            ?>
         </div>
         <input type="submit" value="Go">
     </form>

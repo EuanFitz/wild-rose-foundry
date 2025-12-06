@@ -24,7 +24,7 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
     <title>(ITEM NAME) || WildRose.com</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        main{
+       main{
             display:grid;
             grid-template-columns: 1fr 1fr;
             gap:3rem;
@@ -76,12 +76,12 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
         ?>
         <div>
             <img class="productimg" src="media/<?php echo $product['image'];?>" alt="<?php echo $product['img_alt'];?>" width="1024" height="1024">
-            <div class="thumb">
+            <div class="thumb" id="thumb">
                 <?php
                 $variantsql = mysqli_query($connection,$varquery);
                 while($variant = mysqli_fetch_assoc($variantsql)){
                 ?>
-                <button><img src="media/thumb/<?php echo $variant['image'];?>" height="250" width="250" alt="<?php echo $variant['img_alt']?>"></button>
+                <button><img id="<?php echo $variant['variant_id']; ?>" src="media/thumb/<?php echo $variant['image'];?>" height="250" width="250" alt="<?php echo $variant['img_alt']?>"></button>
                 <?php
                 }
                 ?>
@@ -97,6 +97,14 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
                 <p>$38.00</p>
                 <form action="order.php" method="POST">
                     <input type="hidden" name="id" value="<?php echo $product['product_id'];?>">
+                    <input type="hidden" name=var value="
+                    <?php
+                    if(isset($_GET['var'])){
+                        echo $_GET['var'];
+                    }else {
+                        echo 0;
+                    }
+                    ?>">
                    <button type="submit">Add to order</button>
                 </form>
             </div>
@@ -122,5 +130,6 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
     <?php
     include('includes/footer.php');
     ?>
+    <script src="details.js"></script>
 </body>
 </html>
