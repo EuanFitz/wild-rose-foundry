@@ -45,7 +45,7 @@ require('includes/connection.php');
             <p>Your order number is: <?php echo $order['order_id']; ?></p>
             <p>Please have your order number ready on pickup.</p>
             <a class="nocontentbutton" href="products.php">Keep shopping</a>
-            </main>
+        </main>
         <?php
         include("includes/footer.php");
             //End session

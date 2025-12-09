@@ -207,7 +207,7 @@ form button[type="submit"]{
     padding: .5rem 0rem;
 }
 form button[type="submit"]:hover{
-    background-color: var(--header);
+    background: #CC844A90;
     cursor: pointer;
 }
 

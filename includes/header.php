@@ -3,7 +3,7 @@
     <div>
     <a class="brand" href="index.php">
         <img src="media/logos/wildrose-foundry-logo.avif" alt="">
-        <h1>Wild Rose <span>Foundry<span></h1>
+        <h1>Wild Rose Foundry</h1>
     </a>
     <nav>
         <ul>

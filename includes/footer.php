@@ -2,7 +2,7 @@
     <div>
         <a class="brand" href="index.php">
             <img src="media/logos/wildrose-foundry-logo.avif" alt="">
-            <h1>Wild Rose <span>Foundry<span></h1>
+            <h1>Wild Rose Foundry</h1>
         </a>
     </div>
     <div class="footerlinks">
@@ -15,11 +15,12 @@
                 <li><a href="">Contact</a></li>
             </ul>
         </nav>
-    <div class="socials">
-        <ul>
-            <li><img src="media/logos/instagramicon.svg" alt="">@WildRoseFoundry</li>
-            <li><img src="media/logos/twittericon.svg" alt="">@Foundry_WildRose</li>
-            <li><img src="media/logos/facebookicon.svg" alt="">@TheWildRoseFoundry</li>
-        </ul>
+        <div class="socials">
+            <ul>
+                <li><img src="media/logos/instagramicon.svg" alt="">@WildRoseFoundry</li>
+                <li><img src="media/logos/twittericon.svg" alt="">@Foundry_WildRose</li>
+                <li><img src="media/logos/facebookicon.svg"     alt="">@TheWildRoseFoundry</li>
+            </ul>
+        </div>
     </div>
 </footer>

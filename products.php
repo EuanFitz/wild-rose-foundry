@@ -57,6 +57,7 @@ if(isset($_POST['price'])){
     <style>
 /* FORM */
     .filters{
+        display: flex;
         background: #BFBCB8;
         justify-content: space-between;
         align-items: center;
@@ -65,6 +66,7 @@ if(isset($_POST['price'])){
         }
     .filters > div{
         display: flex;
+        gap: .5rem;
     }
         .filters input[type=submit]{
             background: none;
@@ -74,6 +76,7 @@ if(isset($_POST['price'])){
             color: #FFF4EA;
             padding: .8rem;
         }
+
         form input[type=submit]:hover{
             background: #BFBCB8;
         } 
@@ -118,12 +121,19 @@ if(isset($_POST['price'])){
                 height: 100%;
             }
         }
-        @media(min-width: 780px){
-            .filters{
-            display: flex;
-            }
+        @media(max-width: 780px){
             .filters > div{
                 flex-direction: column;
+            }
+        }
+        @media(max-width: 600px){
+            .filters{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .filters button[type='submit']{
+                align-self: flex-end;
             }
         }
     </style>
@@ -157,19 +167,23 @@ if(isset($_POST['price'])){
             $vendoroptionsql = mysqli_query($connection,$vendoroption_query);
             while($vend = mysqli_fetch_assoc($vendoroptionsql)){
         ?>
-            <option value="<?php echo $vend['vendor_id'];?>"><?php echo $vend['name'];?> </option>';
+            <option value="<?php echo $vend['vendor_id'];?>"><?php echo $vend['name'];?> </option>
         <?php
         }?>
         </select>
         </div>
         <div>
             <span>Price</span>
-            <label for="low-high">$-$$$</label>
-            <input type="radio" name="price" id="low-high" value="ASC">
-            <label for="high-low">$$$-$</label>
-            <input type="radio" name="price" id="high-low" value="DESC">
+            <div>
+                <label for="low-high">High</label>
+                <input type="radio" name="price" id="low-high" value="ASC">
+            </div>
+            <div>
+                <label for="high-low">Low</label>
+                <input type="radio" name="price" id="high-low" value="DESC">
+            </div>
         </div>
-        <input type="submit" value="Go">
+        <button type="submit">Go</button>
     </form>
     <main>
         <?php 

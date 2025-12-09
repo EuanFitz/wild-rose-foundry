@@ -59,13 +59,14 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
     <form class="filters" action="vendors.php" method="GET">
         <select name="id" id="vendor">
             <option value="">All Vendors</option>
-        <?php 
-        $vendoroptionsql = mysqli_query($connection,$query);
-        while($vendor = mysqli_fetch_assoc($vendoroptionsql)){
-            echo '<option value="'.$vendor['vendor_id'].'">'.$vendor['name'].'</option>';
-        }
-        ?>
-        <input type="submit" value="Go">
+            <?php 
+            $vendoroptionsql = mysqli_query($connection,$query);
+            while($vendor = mysqli_fetch_assoc($vendoroptionsql)){
+                echo '<option value="'.$vendor['vendor_id'].'">'.$vendor['name'].'</option>';
+            }
+            ?>
+        </select>
+        <button type="submit">Go</button>
     </form>
     <main>
         <?php 
