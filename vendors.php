@@ -13,8 +13,44 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vendor name || WildRose</title>
+    <title><?php
+    
+    if(isset($vendor_id)){
+    $namequery = "SELECT * FROM vendors WHERE vendor_id = $vendor_id";
+    $namesql = mysqli_query($connection,$namequery);
+    $vendorname = mysqli_fetch_assoc($namesql);
+    echo $vendorname['name'];
+    }else{
+        echo "Vendors";
+        }?> || WildRose</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        main section{
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+        }
+        main section div{
+            margin-bottom: 2rem;
+        }
+        main section img{
+            max-width: 100%;
+            height: auto;
+        }
+        .contact img{
+            width: 25px;
+        }
+        main section .contact{
+            display: flex;
+            text-decoration: underline;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        @media (max-width: 900px){
+            main section > div{
+                grid-column: span 2;
+            }
+        }
+    </style>
 </head>
 <body>
     <?php
@@ -41,7 +77,7 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
             <div class="card">
                     <a href="vendors.php?id=<?php echo $vendor['vendor_id'];?>">
                         <h2><?php echo $vendor['name'];?></h2>
-                        <p><?php echo $vendor['booth_number'];?></p>
+                        <p>Booth: <?php echo $vendor['booth_number'];?></p>
                         <p><?php echo $vendor['bio'];?></p>
                     </a>
                         <div class="contact">

@@ -15,14 +15,26 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
     JOIN products p ON pc.product_id = p.product_id
     WHERE pc.product_id = $prod_id
     GROUP BY c.category_id";
+    
+    $vendorquery = "SELECT v.* FROM vendors v 
+    JOIN products p ON v.vendor_id = p.vendor_id WHERE p.product_id = $prod_id";
 }
+        if(isset($query)){
+            $productsql = mysqli_query($connection,$query);
+            $product = mysqli_fetch_assoc($productsql);
+            $vendorsql = mysqli_query($connection,$vendorquery);
+            $vendor = mysqli_fetch_assoc($vendorsql);
+        
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>(ITEM NAME) || WildRose.com</title>
+    <title><?php if(!isset($product)){ 
+        echo "Details";}else{
+            echo $product['name'];
+        }?>|| WildRose.com</title>
     <link rel="stylesheet" href="styles.css">
     <style>
        main{
@@ -50,16 +62,17 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
             max-width: 100%;
             height: auto;
         }
+        main section{
+            display:flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
         .productinfo{
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 1rem;
-            background: #FFFFFF20;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px #00000070;
         }
-        .productinfo div:last-of-type{
+        .price-button{
             display: flex;
             justify-content: space-between;
         }
@@ -70,11 +83,6 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
     include('includes/header.php');
     ?>
     <main>
-        <?php
-        if(isset($query)){
-            $productsql = mysqli_query($connection,$query);
-            $product = mysqli_fetch_assoc($productsql);
-        ?>
         <div>
             <img class="productimg" src="media/<?php echo $product['image'];?>" alt="<?php echo $product['img_alt'];?>" width="1024" height="1024">
             <div class="thumb" id="thumb">
@@ -88,21 +96,12 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
                 ?>
             </div>
         </div>
-        <div class="productinfo">
-            <div>
+        <section class="card">
+            <div class="productinfo">
                 <h2><?php echo $product['name']; ?></h2>
-                <p>By: Vendor Name</p>
-                <p><?php $product['description']; ?></p>
-            </div>
-            <div>
-                <p>$38.00</p>
-                <form action="order.php" method="POST">
-                    <input type="hidden" name="id" value="<?php echo $product['product_id'];?>">
-                    <input type="hidden" name=var value="<?php echo $_GET['var'];?>">
-                   <button type="submit">Add to order</button>
-                </form>
-            </div>
-            <ul>
+                <p>By: <a href="vendors.php?id=<?php echo $vendor['vendor_id']; ?>"><?php echo $vendor['name'];?></a></p>
+                <p><?php echo $product['description']; ?></p>
+                 <ul>
             <?php   
                 $categorysql = mysqli_query($connection,$categoryquery);
                 while($categories = mysqli_fetch_assoc($categorysql)){
@@ -112,11 +111,20 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
                 }
             ?>
             </ul>
-        </div>
+            </div>
+            <div class="price-button">
+                <p>$38.00</p>
+                <form action="order.php" method="POST">
+                    <input type="hidden" name="id" value="<?php echo $product['product_id'];?>">
+                    <input type="hidden" name=var value="<?php echo $_GET['var'];?>">
+                   <button type="submit">Add to order</button>
+                </form>
+            </div>
+        </section>
         <?php
             }else{?>
                 <p>No product was selected.</p>
-                <a href="products.php">All products</a>
+                <a class="nocontentbutton" href="products.php">All products</a>
             <?php
             }
         ?>

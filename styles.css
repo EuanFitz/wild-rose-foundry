@@ -21,6 +21,10 @@ body{
     background: var(--main);
     color: var(--darktext);
 }
+
+
+
+
 /* Header */
 header{
     background: var(--header);
@@ -72,6 +76,9 @@ header a, footer a{
     header div nav ul li:last-of-type{
         border-right: 0;
     }
+
+
+
 /* FORM Filters */
 .filters{
     background: #BFBCB8;
@@ -81,6 +88,9 @@ header a, footer a{
     box-shadow: 0 3px 10px #00000070;
     padding: 1rem;
 }
+
+
+
 /*Pagination Buttons*/
 .pagination{
     grid-column: span 3;
@@ -100,24 +110,9 @@ header a, footer a{
     background-color: #3c383372;
     cursor: pointer;
 }
-/* UNIVERSAL */
- main a{
-    text-decoration: none;
-    color: var(--darktext);
-    cursor: pointer;
-}
-form button[type="submit"]{
-    background: var(--button);
-    color:var(--light);
-    width: 150px;
-    border-radius: 10px;
-    border: 0;
-    padding: .5rem 0rem;
-}
-form button[type="submit"]:hover{
-    background-color: var(--header);
-    cursor: pointer;
-}
+
+
+
 
 /* INDEX PAGE */
 main{
@@ -152,6 +147,7 @@ main ul{
 }
 
 
+
 /* Footer */
 footer{
     background: var(--button);
@@ -183,12 +179,47 @@ footer .socials li:last-of-type{
 footer .socials img{
     max-height: 2ch;
 }
+
+
+
 /* Card */
 .card{
     background: var(--card);
     border-radius: 15px;
     box-shadow: var(--box-shadow);
     padding: 1rem;
+}
+
+
+
+/* UNIVERSAL */
+ main a{
+    text-decoration: none;
+    color: var(--darktext);
+    cursor: pointer;
+}
+form button[type="submit"]{
+    background: var(--button);
+    color:var(--light);
+    width: 150px;
+    border-radius: 10px;
+    border: 0;
+    padding: .5rem 0rem;
+}
+form button[type="submit"]:hover{
+    background-color: var(--header);
+    cursor: pointer;
+}
+
+.nocontentbutton{
+    padding: .5rem;
+    background: #00000050;
+    color: var(--light);
+    max-width: 150px;
+    border-radius: 10px;
+}
+.nocontentbutton:hover{
+    background: #00000060;
 }
 /* Media Queries */
 @media (min-width: 900px) {

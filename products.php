@@ -178,7 +178,7 @@ if(isset($_POST['price'])){
         while($product = mysqli_fetch_assoc($productsql)){
             $prod_id = $product["product_id"];
 
-            $vendor_query = " SELECT * FROM `vendors` v JOIN `products` p ON v.vendor_id = p.vendor_id WHERE p.product_id = $prod_id ";
+            $vendor_query = " SELECT v.* FROM `vendors` v JOIN `products` p ON v.vendor_id = p.vendor_id WHERE p.product_id = $prod_id ";
             $vendorsql = mysqli_query($connection,$vendor_query);
             $vendor = mysqli_fetch_assoc($vendorsql);
             ?>
