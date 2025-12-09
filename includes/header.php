@@ -2,7 +2,7 @@
     <p class="countdown">Days till christmas</p>
     <div>
     <a class="brand" href="index.php">
-        <img src="media/logos/wildrose-foundry-logo.png" alt="">
+        <img src="media/logos/wildrose-foundry-logo.avif" alt="">
         <h1>Wild Rose <span>Foundry<span></h1>
     </a>
     <nav>

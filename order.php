@@ -7,10 +7,14 @@ if(isset($_POST['id'])) {
         "variant" => $_POST['var']
     ];
 }
-$ids = array_column($_SESSION['products'], 'id');
-$variants = array_column($_SESSION['products'], 'variant');
+    $ids = array_column($_SESSION['products'], 'id');
+    $variants = array_column($_SESSION['products'], 'variant');
+    
+    $inids = implode(" ,",$ids);
+    $invariants = implode(" '", $variants);
 if(isset($product)){
-    if(!in_array($product['id'],$ids)) {
+
+    if(!in_array($product['id'],$ids) && !in_array($product['variant'],$variants)) {
     $_SESSION['products'][] = $product;
 }
 }
@@ -26,15 +30,12 @@ if(isset($product)){
 //     }
 // }
 
-$ids = implode(", ",$ids);
-$variants = implode(", ",$variants);
-
-print_r($ids);
-print_r($variants);
+// print_r($ids);
+// print_r($variants);
 
 
-// print_r("(".$ids.")");
-// print_r("(".$variants.")");
+print_r("(".$inids.")");
+print_r("(".$invariants.")");
 //I have a issue where the keys in the array arent imploding so it wont convert to a string properly..
 //Potential fix would be to make a second array using variants but then I would have to find a way to associate them back to the product id before completing the order. 
 //End session
@@ -54,44 +55,71 @@ $price = 0;
     <title>Order || WildRose.com</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        main{
+       main{
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            gap: 2rem;
+            grid-template-columns: 1fr 2fr;
+            gap: 1rem;
         }
-        article{
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 50px 50px;
-            gap: 3rem;
+        section .order-overview{
+            background-color: var(--card);
+            border-radius: 15px;
+            border: 2px solid var(--darktext);
+            display: flex;
+            flex-direction: column;
+            max-width: 100%;
+            max-height: 300px;
             overflow: hidden;
-            border-radius: 14px;
-            background: #ffffff80;
-            margin: .8rem;
+            overflow-y: scroll;
+            gap: 1rem;
+            margin: 0 auto;
         }
-        article img{
-            border-radius: 10px;
-            height: 100%;
-            max-width: auto;
-            padding: .8rem;
-            grid-row: span 2;
-        }
-        article h2, article p{
-            align-items: end;
-        }
-        .scroll{
-            overflow-y: auto;
-            height: 100%;
-        }
-        .order div{
+        section div article{
+            border-radius: 15px;
+            max-width: 90%;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: 200px 250px;
+            grid-template-columns: 1fr 3fr;
+            gap: .5rem; 
+            box-shadow: 0 2px 5px var(--darktext);
         }
-        .card{
+        section div article img{
+            border-radius: 15px 0 0 15px;
+            max-height: 100px;
+            width: auto;
+        }
+        .ordertotal{
             padding: 2rem;
         }
- 
+        main section form{
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        main section form div{
+            display: grid;
+            grid-template-columns: 100px 300px;
+        }
+        section form .clear{
+            background: rgb(138, 48, 48);
+            color: var(--light)
+        }
+        main section{
+            width: 80%;
+            margin: 2rem auto;
+        }
+        @media(max-width: 1000px){
+            main{
+                display: flex;
+                flex-direction: column;
+            }
+            main section form div{
+                display: flex;
+                flex-direction: column;
+            }
+            main section{
+                max-width: 80%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -138,21 +166,31 @@ $price = 0;
             session_destroy();
         }else{
              if((count($_SESSION['products']))> 0){
-                $query = "SELECT * FROM `products` WHERE product_id IN($ids)";
+                $query = "SELECT * FROM `products` WHERE product_id IN($inids)";
                 $productsql = mysqli_query($connection,$query);
         ?>
         <section class="card">
+            <div class="order-overview">
+                <?php
+                while($product = mysqli_fetch_assoc($productsql)){
+                    $price += ((float)$product['price']);
+                ?>
+                <article>
+                    <img src="media/thumb/<?php echo $product['image']; ?>" alt="<?php echo $product['img_alt']; ?>" height="250" width="250">
+                    <div>
+                        <h3><?php echo $product['name']; ?></h3>
+                        <p><?php echo $product['price']; ?></p>
+                    </div>
+                </article>
             <?php
-             while($product = mysqli_fetch_assoc($productsql)){
-                $price += ((float)$product['price']);
-            ?>
-            <article>
-                <img src="media/thumb/<?php echo $product['image']; ?>" alt="<?php echo $product['img_alt']; ?>" height="250" width="250">
-                <h3><?php echo $product['name']; ?></h3>
-                <p><?php echo $product['price']; ?></p>
-            </article>
+            }?>
+            </div>
+            <div class="ordertotal">
+                <p>Subtotal:  $<?php echo number_format($price, 2); ?></p>
+                <p>Tax (5%): $<?php echo $tax;?></p>
+                <p>Total: $<?php echo $total;?></p>
+            </div>
             <?php
-            }
             $tax = number_format(($price*.05), 2);
             $total = number_format(($price + $tax), 2);
             ?>
@@ -163,10 +201,6 @@ $price = 0;
         <?php
         ?>
         <section class="card">
-            <div><p>Subtotal:  $<?php echo number_format($price, 2); ?></p>
-                <p>Tax (5%): $<?php echo $tax;?></p>
-                <p>Total: $<?php echo $total;?></p>
-            </div>
             <form class="order" action="order.php" method="post">
                 <div>
                     <label for="first">First Name</label>
@@ -184,8 +218,6 @@ $price = 0;
                     <label for="phone">Phone Number</label>
                     <input type="tel" name="phone" id="phone" required>
                 </div>
-                <input type="hidden" name="items" value="<?php echo $ids;?>">
-                <input type="hidden" name= "order_var" value="<?php echo $variants;?>">
                 <input type="hidden" name="price" value="<?php echo $total;?>">
                 <
                 <button type="submit" name="complete">Complete Order</button>

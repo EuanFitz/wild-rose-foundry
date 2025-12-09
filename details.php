@@ -2,6 +2,7 @@
 include('includes/global.php');
 require('includes/connection.php');
 if(isset($_GET['id']) && $_GET['id'] !== ''){
+    $var_id = $_GET['var'];
     $prod_id = $_GET['id'];
     $query = "SELECT * FROM products WHERE product_id = $prod_id";
     
@@ -72,7 +73,7 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
         <?php
         if(isset($query)){
             $productsql = mysqli_query($connection,$query);
-            $product = mysqli_fetch_assoc($productsql)
+            $product = mysqli_fetch_assoc($productsql);
         ?>
         <div>
             <img class="productimg" src="media/<?php echo $product['image'];?>" alt="<?php echo $product['img_alt'];?>" width="1024" height="1024">
@@ -97,14 +98,7 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
                 <p>$38.00</p>
                 <form action="order.php" method="POST">
                     <input type="hidden" name="id" value="<?php echo $product['product_id'];?>">
-                    <input type="hidden" name=var value="
-                    <?php
-                    if(isset($_GET['var'])){
-                        echo $_GET['var'];
-                    }else {
-                        echo 0;
-                    }
-                    ?>">
+                    <input type="hidden" name=var value="<?php echo $_GET['var'];?>">
                    <button type="submit">Add to order</button>
                 </form>
             </div>
