@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(ITEM NAME) || WildRose.com</title>
+    <link rel="stylesheet" href="details%20copy_files/styles.css">
+    <style>
+        main{
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+            gap:3rem;
+            padding: 1rem;
+            justify-content: center;
+            color: #3c3833;
+        }
+        main > div{
+            max-width: 100%;
+        }
+        .productimg{
+            max-width: 100%;
+            height: auto;
+        }
+        .thumb{
+            display:grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;   
+            justify-self: center;
+        }
+        .thumb img{
+            max-width: 100%;
+            height: auto;
+        }
+        .productinfo{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1rem;
+            background: #FFFFFF20;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #00000070;
+        }
+        .productinfo div:last-of-type{
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <p class="countdown">Days till christmas</p>
+    <div>
+    <a class="brand" href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/index.html">
+        <img src="details%20copy_files/wildrose-foundry-logo.png" alt="">
+        <h1>Wild Rose <span>Foundry<span></span></span></h1>
+    </a>
+    <nav>
+        <ul>
+            <li><a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/index.php">Home</a></li>
+            <li><a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/products.php">Products</a></li>
+            <li><a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/vendors.php">Vendors</a></li>
+            <li><a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/order.php">My Cart</a></li>
+        </ul>
+    </nav>
+    </div>
+</header>    <main>
+                <div>
+            <img class="productimg" src="details%20copy_files/pcc-mug-16-river.png" alt="A product photo of 16oz Mug from Prairie Clay Co.." width="" height="">
+            <div class="thumb">
+                                <button><img src="details%20copy_files/pcc-mug-16-river-thumb.png" height="250" width="250" alt="A product photo of 16oz Mug from Prairie Clay Co. in the River colour."></button>
+                                <button><img src="details%20copy_files/pcc-mug-16-sand-thumb.png" height="250" width="250" alt="A product photo of 16oz Mug from Prairie Clay Co. in the Sand colour."></button>
+                                <button><img src="details%20copy_files/pcc-mug-16-forest-thumb.png" height="250" width="250" alt="A product photo of 16oz Mug from Prairie Clay Co. in the Forest colour."></button>
+                                <button><img src="details%20copy_files/pcc-mug-16-ember-thumb.png" height="250" width="250" alt="A product photo of 16oz Mug from Prairie Clay Co. in the Ember colour."></button>
+                            </div>
+        </div>
+        <div class="productinfo">
+            <div>
+                <h2>16oz Mug</h2>
+                <p>By: Vendor Name</p>
+                <p>Hand-thrown 12oz ceramic mug in multiple glaze colours.</p>
+            </div>
+            <div>
+                <p>$38.00</p>
+                <form action="order.php" method="POST">
+                    <input type="hidden" name="id" value="2">
+                    <input type="hidden" name="name" value="16oz Mug">
+                    <input type="hidden" name="price" value="44.00">
+                    <input type="hidden" name="image" value="pcc-mug-16-river.png">
+                    <input type="hidden" name="alt" value="A product photo of 16oz Mug from Prairie Clay Co..">
+                   <button type="submit">Add to order</button>
+                </form>
+            </div>
+            <ul>
+                                <li>Ceramics</li>
+                                <li>Kitchen &amp; Dining</li>
+                        </ul>
+        </div>
+            </main>
+    <footer>
+    <div>
+        <a class="brand" href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/index.html">
+            <img src="details%20copy_files/wildrose-foundry-logo.png" alt="">
+            <h1>Wild Rose <span>Foundry<span></span></span></h1>
+        </a>
+    </div>
+    <div>
+        <ul>
+            <li>Contact</li>
+            <li><img src="details%20copy_files/instagramicon.svg" alt="">@WildRoseFoundry</li>
+            <li><img src="details%20copy_files/twittericon.svg" alt="">@Foundry_WildRose</li>
+            <li><img src="details%20copy_files/facebookicon.svg" alt="">@TheWildRoseFoundry</li>
+        </ul>
+    </div>
+</footer>
+</body></html>

@@ -1,5 +1,6 @@
 <?php
-require("connection.php");
+include('includes/global.php');
+require('includes/connection.php');
 $query = "SELECT * FROM vendors WHERE 1";
 $where = '';
 if(isset($_GET['id']) && $_GET['id'] !== ''){
@@ -50,7 +51,7 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
 </head>
 <body>
     <?php
-    include ("header.php");
+    include ("includes/header.php");
     ?>
     <form action="vendors.php" method="GET">
         <select name="id" id="vendor">
@@ -69,7 +70,7 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
         while($vendor = mysqli_fetch_assoc($vendoroptionsql)){
             ?>
             <section>
-            <a href="vendors.php?id=<?php echo $vendor['vendor_id'];?>"><img src="media/logos/<?php echo $vendor['logo']?>" alt="<?php echo $vendor['logo_alt'];?>"></a>
+            <a href="vendors.php?id=<?php echo $vendor['vendor_id'];?>"><img src="media/logos/<?php echo $vendor['logo']?>" alt="<?php echo $vendor['logo_alt'];?>" height="1024" width="1024"></a>
             <div class="card">
                     <a href="vendors.php?id=<?php echo $vendor['vendor_id'];?>">
                         <h2><?php echo $vendor['name'];?></h2>
@@ -87,7 +88,7 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
          ?>
     </main>
     <?php
-    include ("footer.php");
+    include ("includes/footer.php");
     ?>
 </body>
 </html>

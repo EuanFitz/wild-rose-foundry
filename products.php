@@ -1,5 +1,8 @@
 <?php
-require("connection.php");
+include('includes/global.php');
+require('includes/connection.php');
+
+//Queries
 $queryproduct = "SELECT p.* FROM `products` p 
 JOIN `vendors` v ON p.vendor_id = v.vendor_id 
 JOIN `product_category` pc ON p.product_id = pc.product_id 
@@ -10,7 +13,9 @@ $category_query = "SELECT * FROM `categories`";
 
 $groupproduct = " GROUP BY p.product_id";
 $wherequery = '';
+$orderquery = '';
 
+//Pagination
 $products_per_page = 24;
 
 $rows_num = mysqli_query($connection, "SELECT COUNT(*) FROM products");
@@ -23,7 +28,24 @@ if(!isset($_GET['start'])){
 }else{
     $start = $_GET['start'];
 }
-$limit = " LIMIT $start, $products_per_page"
+$limit = " LIMIT $start, $products_per_page";
+
+//Filtering
+if(isset($_POST['category']) && $_POST['category'] !== ''){
+    $category = $_POST['category'];
+    $wherequery .= " AND c.category_id = $category";
+}
+if(isset($_POST['vendor']) && $_POST['vendor'] !== ''){
+    $vendor = $_POST['vendor'];
+    $wherequery .= " AND v.vendor_id = $vendor";
+}
+if(isset($_POST['price'])){
+    $price = $_POST['price'];
+    $orderquery = " ORDER BY p.price $price";
+}
+
+//Query concatination
+    $fullquery = $queryproduct .= $wherequery .= $groupproduct .= $orderquery .= $limit;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,7 +105,7 @@ $limit = " LIMIT $start, $products_per_page"
 </head>
 <body>
     <?php
-    include("header.php");
+    include("includes/header.php");
     ?>
     <form method="post" action="products.php">
         <div>
@@ -108,29 +130,28 @@ $limit = " LIMIT $start, $products_per_page"
             <option value="">All Vendors</option>
         <?php 
             $vendoroptionsql = mysqli_query($connection,$vendoroption_query);
-            while($vendor = mysqli_fetch_assoc($vendoroptionsql)){
+            while($vend = mysqli_fetch_assoc($vendoroptionsql)){
         ?>
-            <option value="<?php echo $vendor['vendor_id'];?>"><?php echo $vendor['name'];?> </option>';
+            <option value="<?php echo $vend['vendor_id'];?>"><?php echo $vend['name'];?> </option>';
         <?php
-        }
-        ?>
-
-    
-        ?>
+        }?>
         </select>
         </div>
         <div>
             <span>Price</span>
             <label for="low-high">$-$$$</label>
-            <input type="radio" name="price" id="low-high" value="low-high">
+            <input type="radio" name="price" id="low-high" value="ASC">
             <label for="high-low">$$$-$</label>
-            <input type="radio" name="price" id="high-low" value="high-low">
+            <input type="radio" name="price" id="high-low" value="DESC">
+            <?php
+                echo "<p>$fullquery</p>";
+            ?>
         </div>
         <input type="submit" value="Go">
     </form>
     <main>
         <?php 
-        $productsql = mysqli_query($connection,($queryproduct.= $groupproduct.= $limit));
+        $productsql = mysqli_query($connection,$fullquery);
         if(mysqli_num_rows($productsql)>0){
         while($product = mysqli_fetch_assoc($productsql)){
             $prod_id = $product["product_id"];
@@ -156,7 +177,7 @@ $limit = " LIMIT $start, $products_per_page"
     ?>
     </main>
     <?php
-    include("footer.php");
+    include("includes/footer.php");
     ?>
 </body>
 </html>
