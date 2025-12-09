@@ -118,7 +118,7 @@ if(isset($_POST['price'])){
                 height: 100%;
             }
         }
-        @media(max-width: 780px){
+        @media(min-width: 780px){
             .filters{
             display: flex;
             }
