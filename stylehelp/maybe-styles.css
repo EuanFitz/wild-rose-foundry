@@ -1,0 +1,163 @@
+/*Order Page*/
+main{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 2rem;
+        }
+        article{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 50px 50px;
+            gap: 3rem;
+            overflow: hidden;
+            border-radius: 14px;
+            background: #ffffff80;
+            margin: .8rem;
+        }
+        article img{
+            border-radius: 10px;
+            height: 100%;
+            max-width: auto;
+            padding: .8rem;
+            grid-row: span 2;
+        }
+        article h2, article p{
+            align-items: end;
+        }
+        .scroll{
+            overflow-y: auto;
+            height: 100%;
+        }
+        .order div{
+            display: grid;
+            grid-template-columns: 200px 250px;
+        }
+        .card{
+            padding: 2rem;
+        }
+
+
+/* Products Page */
+
+form{
+            background: #BFBCB8;
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 10px #00000070;
+            padding: 1rem;
+        }
+        form input[type=submit]{
+            background: none;
+            border: none;
+            font-size: large;
+            cursor: pointer;
+            color: #FFF4EA;
+            padding: .8rem;
+        }
+        form input[type=submit]:hover{
+            background: #BFBCB8;
+        } 
+        main{
+            display: grid;
+            grid-template-columns: repeat(3, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 1.5rem;
+        }
+        main a{
+            text-decoration: none;
+        }
+        main article {
+            border: 3px solid #8C8276;
+            width: 100%;
+            border-radius: 10px 10px 0 0;
+            overflow: hidden;
+            background:#ffffff50;
+        }
+        main article > img{
+            max-width: 100%;
+            height: auto;
+        }
+        main a article h2, main a article p{
+            padding-left: .5rem;
+        }
+        /* Repeating styles */
+        main a, form{
+         color: #3C3833;
+        }
+
+
+/* Vendors Page */
+
+section{
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+        }
+        section img{
+            max-width: 300px;
+            justify-self: flex-end;
+        }
+        .card{
+            margin: 4rem;
+            padding: 1.5rem;
+            display:flex;
+            flex-direction: column;
+        }
+        .card .contact{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: flex-end;
+            justify-self: flex-end;
+        }
+        .contact a, .contact p{
+            display: flex;
+            max-width: 100%;
+            align-items: center;
+        }
+        .contact a{
+            justify-self: flex-end;
+        }
+        .contact a img{
+            max-width: 40px;
+        }
+/* Details */
+
+main{
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+            gap:3rem;
+            padding: 1rem;
+            justify-content: center;
+            color: #3c3833;
+        }
+        main > div{
+            max-width: 100%;
+        }
+        .productimg{
+            max-width: 100%;
+            height: auto;
+        }
+        .thumb{
+            display:grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;   
+            justify-self: center;
+        }
+        .thumb img{
+            max-width: 100%;
+            height: auto;
+        }
+        .productinfo{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1rem;
+            background: #FFFFFF20;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #00000070;
+        }
+        .productinfo div:last-of-type{
+            display: flex;
+            justify-content: space-between;
+        }

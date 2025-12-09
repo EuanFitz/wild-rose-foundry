@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products|| WildRose.com</title>
-    <link rel="stylesheet" href="products%20copy_files/styles.css">
+    <link rel="stylesheet" href="/styles.css">
     <style>
-        form{
-            background: #BFBCB8;
-            display:flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 3px 10px #00000070;
-            padding: 1rem;
+    /* FORM */
+    .filters{
+        background: #BFBCB8;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 3px 10px #00000070;
+        padding: 1rem;
         }
-        form input[type=submit]{
+    .filters > div{
+        display: flex;
+    }
+        .filters input[type=submit]{
             background: none;
             border: none;
             font-size: large;
@@ -25,14 +28,12 @@
         form input[type=submit]:hover{
             background: #BFBCB8;
         } 
+    /* MAIN */
         main{
             display: grid;
             grid-template-columns: repeat(3, minmax(300px, 1fr));
             gap: 2rem;
             padding: 2rem 1.5rem;
-        }
-        main a{
-            text-decoration: none;
         }
         main article {
             border: 3px solid #8C8276;
@@ -48,9 +49,33 @@
         main a article h2, main a article p{
             padding-left: .5rem;
         }
-        /* Repeating styles */
+
+/* Repeating styles */
         main a, form{
          color: #3C3833;
+        }
+        @media (max-width: 1000px){
+            main{
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(auto-fill, auto);
+                gap: .5rem;
+                padding: 1rem .2rem;
+            }
+            .pagination{
+                grid-column: span 2;
+            }
+            main article{
+                font-size: small;
+                height: 100%;
+            }
+        }
+        @media(max-width: 780px){
+            .filters{
+            display: flex;
+            }
+            .filters > div{
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -58,20 +83,22 @@
     <header>
     <p class="countdown">Days till christmas</p>
     <div>
-    <a class="brand" href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/index.html">
-        <img src="products%20copy_files/wildrose-foundry-logo.png" alt="">
+    <a class="brand" href="">
+        <img src="/media/logos/wildrose-foundry-logo.avif" alt="">
         <h1>Wild Rose <span>Foundry<span></span></span></h1>
     </a>
     <nav>
         <ul>
-            <li><a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/index.php">Home</a></li>
-            <li><a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/products.php">Products</a></li>
-            <li><a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/vendors.php">Vendors</a></li>
-            <li><a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/order.php">My Cart</a></li>
+            <li><a href="index copy.html">Home</a></li>
+            <li><a href="products copy.html">Products</a></li>
+            <li><a href="vendors copy.html">Vendors</a></li>
+            <li><a href="order copy.html">My Cart</a></li>
         </ul>
     </nav>
     </div>
-</header>    <form method="post" action="products.php">
+</header>    
+<form class="filters" method="post" action="products.php">
+    <div>
         <div>
         <label for="category">Catagory</label>
         <select id="category" name="category">
@@ -98,9 +125,6 @@
                     <option value="5">Summit &amp; Flame Co. </option>';
                     <option value="6">Thimble &amp; Thicket </option>';
                     <option value="7">Wildflower Bath &amp; Body </option>';
-        
-    
-        ?&gt;
         </select>
         </div>
         <div>
@@ -110,148 +134,13 @@
             <label for="high-low">$$$-$</label>
             <input type="radio" name="price" id="high-low" value="high-low">
         </div>
-        <input type="submit" value="Go">
+        </div>
+        <button type="submit">Go</button>
     </form>
     <main>
-                <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=1">   
-            <article>
-                <img src="products%20copy_files/pcc-mug-12-river.png" alt="A product photo of 12oz Mug from Prairie Clay Co.." width="1024" height="1024">
-                <h2>12oz Mug</h2>
-                <p>12oz Mug</p>
-                <p>38.00</p>
-            </article>
-        </a>
-                <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=2">   
-            <article>
-                <img src="products%20copy_files/pcc-mug-16-river.png" alt="A product photo of 16oz Mug from Prairie Clay Co.." width="1024" height="1024">
-                <h2>16oz Mug</h2>
-                <p>16oz Mug</p>
-                <p>44.00</p>
-            </article>
-        </a>
-                <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=3">   
-            <article>
-                <img src="products%20copy_files/pcc-tumbler-ember.png" alt="A product photo of Ceramic Tumbler from Prairie Clay Co.." width="1024" height="1024">
-                <h2>Ceramic Tumbler</h2>
-                <p>Ceramic Tumbler</p>
-                <p>32.00</p>
-            </article>
-        </a>
-                <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=4">   
-            <article>
-                <img src="products%20copy_files/pcc-bowl-cereal-river.png" alt="A product photo of Cereal Bowl from Prairie Clay Co.." width="1024" height="1024">
-                <h2>Cereal Bowl</h2>
-                <p>Cereal Bowl</p>
-                <p>36.00</p>
-            </article>
-        </a>
-                <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=5">   
-            <article>
-                <img src="products%20copy_files/pcc-planter-small-sand.png" alt="A product photo of Small Planter from Prairie Clay Co.." width="1024" height="1024">
-                <h2>Small Planter</h2>
-                <p>Small Planter</p>
-                <p>28.00</p>
-            </article>
-        </a>
-                <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=6">   
-            <article>
-                <img src="products%20copy_files/pcc-planter-medium-sand.png" alt="A product photo of Medium Planter from Prairie Clay Co.." width="1024" height="1024">
-                <h2>Medium Planter</h2>
-                <p>Medium Planter</p>
-                <p>36.00</p>
-            </article>
-        </a>
-                <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=7">   
-            <article>
-                <img src="products%20copy_files/pcc-plate-dinner-river.png" alt="A product photo of Dinner Plate from Prairie Clay Co.." width="1024" height="1024">
-                <h2>Dinner Plate</h2>
-                <p>Dinner Plate</p>
-                <p>40.00</p>
-            </article>
-        </a>
-                <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=8">   
-            <article>
-                <img src="products%20copy_files/pcc-platter-river.png" alt="A product photo of Ceramic Serving Platter from Prairie Clay Co.." width="1024" height="1024">
-                <h2>Ceramic Serving Platter</h2>
-                <p>Ceramic Serving Platter</p>
-                <p>48.00</p>
-            </article>
-        </a>
-                <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=9">   
-            <article>
-                <img src="products%20copy_files/pcc-pourover-ash.png" alt="A product photo of Pour-over Coffee Cone from Prairie Clay Co.." width="1024" height="1024">
-                <h2>Pour-over Coffee Cone</h2>
-                <p>Pour-over Coffee Cone</p>
-                <p>46.00</p>
-            </article>
-        </a>
-                <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=10">   
-            <article>
-                <img src="products%20copy_files/pcc-vase-tall-terracotta.png" alt="A product photo of Tall Vase from Prairie Clay Co.." width="1024" height="1024">
-                <h2>Tall Vase</h2>
-                <p>Tall Vase</p>
-                <p>52.00</p>
-            </article>
-        </a>
-                <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=11">   
-            <article>
-                <img src="products%20copy_files/brw-board-maple.png" alt="A product photo of Maple Cutting Board from Bow River Woodworks." width="1024" height="1024">
-                <h2>Maple Cutting Board</h2>
-                <p>Maple Cutting Board</p>
-                <p>48.00</p>
-            </article>
-        </a>
-                <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=12">   
-            <article>
-                <img src="products%20copy_files/brw-tray-handles-walnut.png" alt="A product photo of Walnut Serving Tray with Gold Handles from Bow River Woodworks." width="1024" height="1024">
-                <h2>Walnut Serving Tray with Gold Handles</h2>
-                <p>Walnut Serving Tray with Gold Handles</p>
-                <p>72.00</p>
-            </article>
-        </a>
-                <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=13">   
-            <article>
-                <img src="products%20copy_files/brw-serving-board-twotone.png" alt="A product photo of Two-tone Serving Board from Bow River Woodworks." width="1024" height="1024">
-                <h2>Two-tone Serving Board</h2>
-                <p>Two-tone Serving Board</p>
-                <p>59.00</p>
-            </article>
-        </a>
-                <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=14">   
-            <article>
-                <img src="products%20copy_files/brw-cheese-board-walnut.png" alt="A product photo of Walnut Cheese Board from Bow River Woodworks." width="1024" height="1024">
-                <h2>Walnut Cheese Board</h2>
-                <p>Walnut Cheese Board</p>
-                <p>45.00</p>
-            </article>
-        </a>
-                <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=15">   
-            <article>
-                <img src="products%20copy_files/brw-rolling-pin.png" alt="A product photo of Rolling Pin from Bow River Woodworks." width="1024" height="1024">
-                <h2>Rolling Pin</h2>
-                <p>Rolling Pin</p>
-                <p>37.00</p>
-            </article>
-        </a>
-                <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=16">   
-            <article>
-                <img src="products%20copy_files/brw-coasters-set.png" alt="A product photo of Wood Coaster Set (4) from Bow River Woodworks." width="1024" height="1024">
-                <h2>Wood Coaster Set (4)</h2>
-                <p>Wood Coaster Set (4)</p>
-                <p>29.00</p>
-            </article>
-        </a>
-                <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=17">   
-            <article>
-                <img src="products%20copy_files/brw-utensil-holder-maple.png" alt="A product photo of Maple Utensil Holder from Bow River Woodworks." width="1024" height="1024">
-                <h2>Maple Utensil Holder</h2>
-                <p>Maple Utensil Holder</p>
-                <p>42.00</p>
-            </article>
-        </a>
                 <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=18">   
             <article>
-                <img src="products%20copy_files/brw-knife-rack-twotone.png" alt="A product photo of Two-tone Knife Rack from Bow River Woodworks." width="1024" height="1024">
+                <img src="/media/brw-knife-rack-twotone.avif" alt="A product photo of Two-tone Knife Rack from Bow River Woodworks." width="1024" height="1024">
                 <h2>Two-tone Knife Rack</h2>
                 <p>Two-tone Knife Rack</p>
                 <p>66.00</p>
@@ -259,7 +148,7 @@
         </a>
                 <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=19">   
             <article>
-                <img src="products%20copy_files/brw-saltcellar-maple.png" alt="A product photo of Lidded Salt Cellar from Bow River Woodworks." width="1024" height="1024">
+                <img src="/media/brw-saltcellar-maple.avif" alt="A product photo of Lidded Salt Cellar from Bow River Woodworks." width="1024" height="1024">
                 <h2>Lidded Salt Cellar</h2>
                 <p>Lidded Salt Cellar</p>
                 <p>35.00</p>
@@ -267,7 +156,7 @@
         </a>
                 <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=20">   
             <article>
-                <img src="products%20copy_files/hl-apron-natural.png" alt="A product photo of Linen Apron from Hearthcraft Linens." width="1024" height="1024">
+                <img src="/media/hl-apron-natural.avif" alt="A product photo of Linen Apron from Hearthcraft Linens." width="1024" height="1024">
                 <h2>Linen Apron</h2>
                 <p>Linen Apron</p>
                 <p>48.00</p>
@@ -275,7 +164,7 @@
         </a>
                 <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=21">   
             <article>
-                <img src="products%20copy_files/hl-runner-natural.png" alt="A product photo of Linen Table Runner from Hearthcraft Linens." width="1024" height="1024">
+                <img src="/media/hl-runner-natural.avif" alt="A product photo of Linen Table Runner from Hearthcraft Linens." width="1024" height="1024">
                 <h2>Linen Table Runner</h2>
                 <p>Linen Table Runner</p>
                 <p>38.00</p>
@@ -283,7 +172,7 @@
         </a>
                 <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=22">   
             <article>
-                <img src="products%20copy_files/hl-ovenmitts-sage.png" alt="A product photo of Quilted Oven Mitts (Pair) from Hearthcraft Linens." width="1024" height="1024">
+                <img src="/media/hl-ovenmitts-sage.avif" alt="A product photo of Quilted Oven Mitts (Pair) from Hearthcraft Linens." width="1024" height="1024">
                 <h2>Quilted Oven Mitts (Pair)</h2>
                 <p>Quilted Oven Mitts (Pair)</p>
                 <p>32.00</p>
@@ -291,7 +180,7 @@
         </a>
                 <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=23">   
             <article>
-                <img src="products%20copy_files/hl-potholder-blush.png" alt="A product photo of Quilted Potholder from Hearthcraft Linens." width="1024" height="1024">
+                <img src="/media/hl-potholder-blush.avif" alt="A product photo of Quilted Potholder from Hearthcraft Linens." width="1024" height="1024">
                 <h2>Quilted Potholder</h2>
                 <p>Quilted Potholder</p>
                 <p>16.00</p>
@@ -299,17 +188,20 @@
         </a>
                 <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/details.php?id=24">   
             <article>
-                <img src="products%20copy_files/hl-placemats-natural.png" alt="A product photo of Linen Placemats (Set of 4) from Hearthcraft Linens." width="1024" height="1024">
+                <img src="/media/hl-placemats-natural.avif" alt="A product photo of Linen Placemats (Set of 4) from Hearthcraft Linens." width="1024" height="1024">
                 <h2>Linen Placemats (Set of 4)</h2>
                 <p>Linen Placemats (Set of 4)</p>
                 <p>36.00</p>
             </article>
         </a>
-        <a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/products.php?start=0">1</a><a href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/products.php?start=24">2</a>    </main>
+        <div class="pagination">
+        <a href="">1</a><a href="">2</a>   
+        </div> 
+    </main>
     <footer>
     <div>
         <a class="brand" href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/index.html">
-            <img src="products%20copy_files/wildrose-foundry-logo.png" alt="">
+            <img src="/media/logos/wildrose-foundry-logo.avif" alt="">
             <h1>Wild Rose <span>Foundry<span></span></span></h1>
         </a>
     </div>

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Jaldi:wght@400;700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 *{
     box-sizing: border-box;
+    margin: 0;
 }
 :root{
     --header: #8C8276;
@@ -9,139 +10,202 @@
     --darktext: #3C3833;
     --light: #FFF4EA;
     --button: #CC844A;
+    --christmas: #1B7913;
     --box-shadow: 4px 4px 10px #00000070;
     --text-shadow: 0 3px 2px #00000055;
-    --christmas: #1B7913;
 }
 body{
     font-family: Poppins, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
      sans-serif;
     margin: 0;
     background: var(--main);
-}
-/*Multiple style*/
-a{
-    text-decoration: none;
     color: var(--darktext);
 }
-header, footer{
-    font-size: large;
-    display: flex;
-    flex-direction: column;
-}
-footer{
-    overflow: hidden;
-}
-footer img{
-    height: 264px;
-}
-header span, footer span{
-    display: block;
-}
-.brand{
-    font-family: 'Josefin Sans';
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 157px;
+/* Header */
+header{
+    background: var(--header);
+    color: var(--light);
 }
 header a, footer a{
     color: var(--light);
-}   
-button{
-    color:#FFF4EA;
-    background-color: #CC844A;
-    border-radius: 8px;
-    padding: 0 2rem;
+    text-decoration: none;
+    cursor: pointer;
+    text-shadow: var(--text-shadow);
+}
+    /* Countdown */
+    header > p{
+        background: var(--christmas);
+        text-align: center;
+        padding: 15px 0;
+    }
+    /* Logo/Name */
+    .brand{
+        display: flex;
+        font-family: 'Josefin Sans', 'Lucida Sans Regular', 'Lucida Grande', 
+        sans-serif;
+        display: flex;
+        max-height: 200px;
+        max-width: 300px;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
+    .brand img{
+        max-width: 150px;
+        height: auto;
+    }
+    /* Navigation */
+    header div nav ul{
+        padding: 0 .3rem;
+        display: flex;
+        list-style: none;
+        justify-content: space-between;
+    }
+    header div nav ul li{
+        width: 100%;
+        cursor: pointer;
+        padding: .1rem;
+        padding-bottom: .5rem;
+        border-right: 2px solid var(--darktext);
+        text-align: center;
+    }
+    header div nav ul li:last-of-type{
+        border-right: 0;
+    }
+/* FORM Filters */
+.filters{
+    background: #BFBCB8;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 10px #00000070;
+    padding: 1rem;
+}
+/*Pagination Buttons*/
+.pagination{
+    grid-column: span 3;
+    margin: 1rem auto;
+}
+.pagination a{
+    font-size: larger;
+    padding: .5rem .8rem;
+    width: 30px;
+    margin: 1rem;
+    border: 1px solid;
+    text-shadow: var(--text-shadow);
+    border: 1px solid var(--darktext);
+    border-radius: 15px;
+}
+.pagination a:hover{
+    background-color: #3c383372;
+    cursor: pointer;
+}
+/* UNIVERSAL */
+ main a{
+    text-decoration: none;
+    color: var(--darktext);
+    cursor: pointer;
+}
+form button[type="submit"]{
+    background: var(--button);
+    color:var(--light);
+    width: 150px;
+    border-radius: 10px;
+    border: 0;
+    padding: .5rem 0rem;
+}
+form button[type="submit"]:hover{
+    background-color: var(--header);
+    cursor: pointer;
 }
 
-/*Header styling*/
-header{
-    box-shadow: var(--text-shadow);
-    background-color: var(--header);
-}
-header div{
-    display: grid;
-    align-items: center;
-    grid-template-columns: 450px 1fr;
-}
-header > div a img{
-    max-height: 100%;
-    padding-right: 1.2rem;
-    width:auto;
-}
-.countdown{
-    margin: 0;
-    padding: .6rem;
-    background: var(--christmas);
-    text-align: center;
-}
-nav{
-    width: 100%;
-    padding: 0;
-}
-header ul{
-    text-shadow: var(--text-shadow);
-    list-style: none;
-    display: flex;
-    height: 100%;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0;
-    margin:0;
-}
-header ul li{
-    cursor: pointer;
-    padding: .6rem;
-}
+/* INDEX PAGE */
 main{
-    background: var(--main);
+    margin: 0 auto;
 }
-/* Card styling */
+main ul{
+    list-style: none;
+    padding: 0;
+}
+.container ul{
+    display:flex;
+    overflow: hidden;
+    overflow-x: scroll;
+    gap: 3rem;
+    width: 100%;
+    margin: 2rem auto;
+    color: var(--darktext)
+}
+.container ul li{
+    min-width: 290px;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    background:#ffffff50;
+}
+.container ul li div{
+    background: var(--card)
+}
+.container ul li img{
+    background: var(--header);
+    max-width: 100%;
+    padding: .5rem;
+}
+
+
+/* Footer */
+footer{
+    background: var(--button);
+    display: flex;
+    flex-direction: column;
+}
+footer ul{
+    list-style: none;
+    color: var(--light);
+}
+.footerlinks{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+.footerlinks ul{
+    padding: .5rem;
+}
+footer .socials {
+    text-decoration: underline;
+}
+footer .socials li{
+    display: flex;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+footer .socials li:last-of-type{
+    padding-bottom: 0;
+}
+footer .socials img{
+    max-height: 2ch;
+}
+/* Card */
 .card{
     background: var(--card);
     border-radius: 15px;
     box-shadow: var(--box-shadow);
+    padding: 1rem;
 }
-/*Footer styling*/
-footer{
-    width: 100%;
-    background: var(--button);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-footer ul li{
-    list-style: none;
-    color: var(--light);
-    display: flex;
-    align-items: center;
-    gap: .3rem;
-    margin: .3rem;
-    cursor: pointer;
-}
-footer ul li img{
-    height: 28px;
-    width:auto;
-}
-footer{
-    overflow: hidden;
-}
-footer img{
-    height: 264px;
-}
-/*Media quiries*/
-@media (max-width: 900px){
+/* Media Queries */
+@media (min-width: 900px) {
     header div{
-        display: flex;
-        height: auto;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        align-items: center;
     }
-    nav{
-    width: 100%;
+    footer{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
-    .brand{
-        height: 157px;
-        overflow: hidden;
+    footer .footerlinks{
+        align-self: flex-end;
+    }
+    .container{
+        max-width: 80%;
+        margin: 0 auto; 
     }
 }

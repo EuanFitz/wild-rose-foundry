@@ -55,15 +55,18 @@ if(isset($_POST['price'])){
     <title>Products|| WildRose.com</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        form{
-            background: #BFBCB8;
-            display:flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 3px 10px #00000070;
-            padding: 1rem;
+/* FORM */
+    .filters{
+        background: #BFBCB8;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 3px 10px #00000070;
+        padding: 1rem;
         }
-        form input[type=submit]{
+    .filters > div{
+        display: flex;
+    }
+        .filters input[type=submit]{
             background: none;
             border: none;
             font-size: large;
@@ -74,14 +77,12 @@ if(isset($_POST['price'])){
         form input[type=submit]:hover{
             background: #BFBCB8;
         } 
+    /* MAIN */
         main{
             display: grid;
             grid-template-columns: repeat(3, minmax(300px, 1fr));
             gap: 2rem;
             padding: 2rem 1.5rem;
-        }
-        main a{
-            text-decoration: none;
         }
         main article {
             border: 3px solid #8C8276;
@@ -97,9 +98,33 @@ if(isset($_POST['price'])){
         main a article h2, main a article p{
             padding-left: .5rem;
         }
-        /* Repeating styles */
+
+/* Repeating styles */
         main a, form{
          color: #3C3833;
+        }
+        @media (max-width: 1000px){
+            main{
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(auto-fill, auto);
+                gap: .5rem;
+                padding: 1rem .2rem;
+            }
+            .pagination{
+                grid-column: span 2;
+            }
+            main article{
+                font-size: small;
+                height: 100%;
+            }
+        }
+        @media(min-width: 780px){
+            .filters{
+            display: flex;
+            }
+            .filters > div{
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -107,7 +132,7 @@ if(isset($_POST['price'])){
     <?php
     include("includes/header.php");
     ?>
-    <form method="post" action="products.php">
+    <form class="filters" method="post" action="products.php">
         <div>
         <label for="category">Catagory</label>
         <select id="category" name="category">
@@ -143,9 +168,6 @@ if(isset($_POST['price'])){
             <input type="radio" name="price" id="low-high" value="ASC">
             <label for="high-low">$$$-$</label>
             <input type="radio" name="price" id="high-low" value="DESC">
-            <?php
-                echo "<p>$fullquery</p>";
-            ?>
         </div>
         <input type="submit" value="Go">
     </form>
@@ -160,7 +182,7 @@ if(isset($_POST['price'])){
             $vendorsql = mysqli_query($connection,$vendor_query);
             $vendor = mysqli_fetch_assoc($vendorsql);
             ?>
-        <a href="details.php?id=<?php echo $prod_id;?>">   
+        <a href="details.php?id=<?php echo $prod_id;?>&var=0">   
             <article>
                 <img src="media/<?php echo $product["image"];?>" alt="<?php echo $product["img_alt"];?>" width="1024" height="1024">
                 <h2><?php echo $product["name"];?></h2>
@@ -170,11 +192,14 @@ if(isset($_POST['price'])){
         </a>
         <?php
     }
-}
+}?>
+    <div class="pagination">
+        <?php
         for($i=0; $i<$links_needed; $i++){
             echo '<a href="products.php?start='.$i*$products_per_page.'">'.($i+1).'</a>';
         }
     ?>
+    </div>
     </main>
     <?php
     include("includes/footer.php");

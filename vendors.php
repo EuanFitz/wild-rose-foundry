@@ -15,45 +15,12 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vendor name || WildRose</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        section{
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-        }
-        section img{
-            max-width: 300px;
-            justify-self: flex-end;
-        }
-        .card{
-            margin: 4rem;
-            padding: 1.5rem;
-            display:flex;
-            flex-direction: column;
-        }
-        .card .contact{
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: flex-end;
-            justify-self: flex-end;
-        }
-        .contact a, .contact p{
-            display: flex;
-            max-width: 100%;
-            align-items: center;
-        }
-        .contact a{
-            justify-self: flex-end;
-        }
-        .contact a img{
-            max-width: 40px;
-        }
-    </style>
 </head>
 <body>
     <?php
     include ("includes/header.php");
     ?>
-    <form action="vendors.php" method="GET">
+    <form class="filters" action="vendors.php" method="GET">
         <select name="id" id="vendor">
             <option value="">All Vendors</option>
         <?php 

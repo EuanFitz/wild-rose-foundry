@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order || WildRose.com</title>
+    <link rel="stylesheet" href="/stylereset.css">
+    <style> 
+        main{
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 1rem;
+        }
+        section .order-overview{
+            background-color: var(--card);
+            border-radius: 15px;
+            border: 2px solid var(--darktext);
+            display: flex;
+            flex-direction: column;
+            max-width: 100%;
+            max-height: 300px;
+            overflow: hidden;
+            overflow-y: scroll;
+            gap: 1rem;
+            margin: 0 auto;
+        }
+        section div article{
+            border-radius: 15px;
+            max-width: 90%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: .5rem; 
+            box-shadow: 0 2px 5px var(--darktext);
+        }
+        section div article img{
+            border-radius: 15px 0 0 15px;
+            max-height: 100px;
+            width: auto;
+        }
+        .ordertotal{
+            padding: 2rem;
+        }
+        main section form{
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        main section form div{
+            display: grid;
+            grid-template-columns: 100px 300px;
+        }
+        section form .clear{
+            background: rgb(138, 48, 48);
+            color: var(--light)
+        }
+        main section{
+            width: 80%;
+            margin: 2rem auto;
+        }
+        @media(max-width: 1000px){
+            main{
+                display: flex;
+                flex-direction: column;
+            }
+            main section form div{
+                display: flex;
+                flex-direction: column;
+            }
+            main section{
+                max-width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <p class="countdown">Days till christmas</p>
+    <div>
+    <a class="brand" href="index.html">
+        <img src="/media/logos/wildrose-foundry-logo.avif" alt="">
+        <h1>Wild Rose <span>Foundry<span></h1>
+    </a>
+    <nav>
+        <ul>
+            <li><a href="index copy.html">Home</a></li>
+            <li><a href="products copy.html">Products</a></li>
+            <li><a href="vendors copy.html">Vendors</a></li>
+            <li><a href="order copy.html">My Cart</a></li>
+        </ul>
+    </nav>
+    </div>
+</header>    
+    <main>
+        <section class="card">
+            <div class="order-overview">
+                <article>
+                <img src="/media/thumb/brw-cheese-board-walnut.avif" alt="A product photo of 16oz Mug from Prairie Clay Co..">
+                <div>
+                    <h2>16oz Mug</h2>
+                    <p>44.00</p>
+                </div>
+            </article>
+                        <article>
+                <img src="/media/thumb/pcc-planter-medium-forest.avif" alt="A product photo of Small Planter from Prairie Clay Co..">
+                <div>
+                    <h2>16oz Mug</h2>
+                    <p>44.00</p>
+                </div>
+            </article>
+                        <article>
+                <img src="/media/thumb/brw-knife-rack-twotone.avif" alt="A product photo of Ceramic Serving Platter from Prairie Clay Co..">
+                <div>
+                    <h2>16oz Mug</h2>
+                    <p>44.00</p>
+                </div>
+            </article>
+            </div>
+            <div class="ordertotal">
+                <p>Subtotal</p>
+                <p>Tax (5%)</p>
+                <p>Total</p>
+            </div>
+                <form action="order.php" method="post">
+                <input type="hidden" name="clear">
+                <button type="submit" class="clear">Clear Cart</button>
+            </form>
+        </section>
+        <section class="card">
+            <form class="order" action="order.php" method="post">
+                <div>
+                    <label for="first">First Name</label>
+                    <input type="text" id="first" name="first" require>
+                </div>
+                <div>
+                    <label for="last">Last Name</label>
+                    <input type="text" id="last" name="last" require>
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" require>
+                </div>
+                <div>
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" name="phone" id="phone" require>
+                </div>
+                <button type="submit">Complete Order</button>
+            </form>
+        </section>
+            </main>
+        <footer>
+    <div>
+        <a class="brand" href="index.html">
+            <img src="/media/logos/wildrose-foundry-logo.avif" alt="">
+            <h1>Wild Rose <span>Foundry<span></h1>
+        </a>
+    </div>
+    <div>
+        <ul>
+            <li>Contact</li>
+            <li><img src="media/logos/instagramicon.svg" alt="">@WildRoseFoundry</li>
+            <li><img src="media/logos/twittericon.svg" alt="">@Foundry_WildRose</li>
+            <li><img src="media/logos/facebookicon.svg" alt="">@TheWildRoseFoundry</li>
+        </ul>
+    </div>
+</footer></body>
+</html>
