@@ -80,7 +80,7 @@ $price = 0;
         }
         main section form div{
             display: grid;
-            grid-template-columns: 100px 300px;
+            grid-template-columns: 150px 300px;
         }
         section form .clear{
             background: rgb(138, 48, 48);
@@ -174,11 +174,13 @@ $price = 0;
         <?php
             }else{
         ?>
-        <p>Your cart is empty!</p>
-        <a class="nocontentbutton" href="products.php">Keep shopping</a>
-        <?php
-            }
+        <div class="card ordered">
+            <p>Your cart is empty!</p>
+            <a class="nocontentbutton" href="products.php">Keep shopping</a>
+            <?php
+                }
             ?>
+        </div>
     </main>
         <?php
     include('includes/footer.php');

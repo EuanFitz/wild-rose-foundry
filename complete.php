@@ -41,10 +41,12 @@ require('includes/connection.php');
                 //echo $orderproductquery;
                 mysqli_query($connection,$orderproductquery);
             }?>
-            <h3>Thank you <?php echo $first; ?> for your order!</h3>
-            <p>Your order number is: <?php echo $order['order_id']; ?></p>
-            <p>Please have your order number ready on pickup.</p>
-            <a class="nocontentbutton" href="products.php">Keep shopping</a>
+            <div class="ordered card">
+                <h3>Thank you <?php echo $first; ?> for your order!</h3>
+                <p>Your order number is: <?php echo $order['order_id']; ?></p>
+                <p>Please have your order number ready on pickup.</p>
+                <a class="nocontentbutton" href="products.php">Keep shopping</a>
+            </div>
         </main>
         <?php
         include("includes/footer.php");

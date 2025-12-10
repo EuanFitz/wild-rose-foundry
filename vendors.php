@@ -24,33 +24,6 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
         echo "Vendors";
         }?> || WildRose</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .vendor{
-            display: grid;
-            grid-template-columns: 1fr 3fr;
-        }
-        .vendor div{
-            margin: 2rem 1rem;
-        }
-        .vendor img{
-            max-width: 100%;
-            height: auto;
-        }
-        .contact img{
-            width: 25px;
-        }
-        .vendor .contact{
-            display: flex;
-            text-decoration: underline;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        @media (max-width: 900px){
-            main section > div{
-                grid-column: span 2;
-            }
-        }
-    </style>
 </head>
 <body>
     <?php

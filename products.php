@@ -55,31 +55,6 @@ if(isset($_POST['price'])){
     <title>Products|| WildRose.com</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-/* FORM */
-    .filters{
-        display: flex;
-        background: #BFBCB8;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 3px 10px #00000070;
-        padding: 1rem;
-        }
-    .filters > div{
-        display: flex;
-        gap: .5rem;
-    }
-        .filters input[type=submit]{
-            background: none;
-            border: none;
-            font-size: large;
-            cursor: pointer;
-            color: #FFF4EA;
-            padding: .8rem;
-        }
-
-        form input[type=submit]:hover{
-            background: #BFBCB8;
-        } 
     /* MAIN */
         main{
             display: grid;
@@ -106,6 +81,21 @@ if(isset($_POST['price'])){
         main a, form{
          color: #3C3833;
         }
+    @media (max-width: 1000px){
+    main{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(auto-fill, auto);
+        gap: .5rem;
+        padding: 1rem .2rem;
+    }
+    .pagination{
+        grid-column: span 2;
+    }
+    main article{
+        font-size: small;
+        height: 100%;
+    }
+}
     </style>
 </head>
 <body>

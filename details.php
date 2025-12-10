@@ -47,32 +47,9 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
         main > div{
             max-width: 100%;
         }
-        .productimg{
-            max-width: 100%;
-            height: auto;
-        }
-        .thumb{
-            display:grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;   
-            justify-self: center;
-        }
-        .thumb img{
-            max-width: 100%;
-            height: auto;
-        }
         main section{
             display:flex;
             flex-direction: column;
-            justify-content: space-between;
-        }
-        .productinfo{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .price-button{
-            display: flex;
             justify-content: space-between;
         }
     </style>
@@ -83,13 +60,13 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
     ?>
     <main>
         <div>
-            <img id="productimg" class="productimg" src="media/<?php echo $product['image'];?>" alt="<?php echo $product['img_alt'];?>" width="1024" height="1024">
+            <img title="<?php echo $product['name']?>" id="productimg" class="productimg" src="media/<?php echo $product['image'];?>" alt="<?php echo $product['img_alt'];?>" width="1024" height="1024">
             <div class="thumb" id="thumb">
                 <?php
                 $variantsql = mysqli_query($connection,$varquery);
                 while($variant = mysqli_fetch_assoc($variantsql)){
                 ?>
-                <button class="variantimg"><img id="<?php echo $variant['variant_id']?>" src="media/thumb/<?php echo $variant['image'];?>" height="250" width="250" alt="<?php echo $variant['img_alt']?>"></button>
+                <button class="variantimg"><img id="<?php echo $variant['variant_id']?>" title="<?php echo $variant['variant_value']?>" src="media/thumb/<?php echo $variant['image'];?>" height="250" width="250" alt="<?php echo $variant['img_alt']?>"></button>
                 <?php
                 }
                 ?>
