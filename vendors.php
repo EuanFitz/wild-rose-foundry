@@ -25,21 +25,21 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
         }?> || WildRose</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        main section{
+        .vendor{
             display: grid;
             grid-template-columns: 1fr 3fr;
         }
-        main section div{
-            margin-bottom: 2rem;
+        .vendor div{
+            margin: 2rem 1rem;
         }
-        main section img{
+        .vendor img{
             max-width: 100%;
             height: auto;
         }
         .contact img{
             width: 25px;
         }
-        main section .contact{
+        .vendor .contact{
             display: flex;
             text-decoration: underline;
             gap: 2rem;
@@ -73,7 +73,7 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
         $vendoroptionsql = mysqli_query($connection,$query .= $where);
         while($vendor = mysqli_fetch_assoc($vendoroptionsql)){
             ?>
-            <section>
+            <section class="vendor">
             <a href="vendors.php?id=<?php echo $vendor['vendor_id'];?>"><img src="media/logos/<?php echo $vendor['logo']?>" alt="<?php echo $vendor['logo_alt'];?>" height="1024" width="1024"></a>
             <div class="card">
                     <a href="vendors.php?id=<?php echo $vendor['vendor_id'];?>">

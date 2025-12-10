@@ -6,13 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/favicon.ico" type="image/x-icon">
     <title>Wild Rose Foundry || WildRose.com</title>
-    <link rel="stylesheet" href="/stylereset.css">
+    <link rel="stylesheet" href="/styles.css">
     <style>
     </style>
 </head>
 <body>
     <header>
-    <p>Days till christmas</p>
+    <p id="countdown">Days till christmas</p>
     <div>
     <a class="brand" href="https://dev.interactivedesign.ca/~efitzpatrick/cprg309/final/index.php">
         <img src="./index_files/wildrose-foundry-logo.avif" alt="">
@@ -29,8 +29,8 @@
     </div>
 </header>    
 <main>
-    <div class="container">
-        <ul>
+    <div class="container" id="container">
+        <ul id="carousel">
             <li>
                 <img src="./index_files/pcc-bowl-cereal-river.avif" alt="A product photo of Cereal Bowl from Prairie Clay Co..">
                 <h2>Cereal Bowl</h2>
@@ -119,4 +119,6 @@
         </div>
     </div>
 </footer>
+<script src="/global.js"></script>
+<script src="/carousel.js"></script>
 </body></html>

@@ -18,8 +18,8 @@ $mainsql = mysqli_query($connection,$query);
 <body>
     <?php include('includes/header.php');?>
     <main>
-        <div class="container">
-            <ul>
+        <div class="container" id="container">
+            <ul id ="carousel">
                 <?php
                     while($featured = mysqli_fetch_assoc($mainsql)){
                         $vendorid = $featured['vendor_id'];
@@ -39,8 +39,10 @@ $mainsql = mysqli_query($connection,$query);
                 ?>
             </ul>
         </div>
-        <p>Nestled in the heart of Alberta, Wild Rose Foundry is a modern artisan collective celebrating the creativity and craftsmanship of local makers. Every weekend, its converted warehouse space buzzes with energy — filled with pottery, jewelry, textiles, candles, and small-batch foods crafted by independent vendors from across the province. Shoppers come for the quality and stay for the sense of community, discovering new makers every visit. The foundry has one location in Diamond Valley right now, but hopes to expand to multiple locations across the province by 2028.</p>
+        <p class="card">Nestled in the heart of Alberta, Wild Rose Foundry is a modern artisan collective celebrating the creativity and craftsmanship of local makers. Every weekend, its converted warehouse space buzzes with energy — filled with pottery, jewelry, textiles, candles, and small-batch foods crafted by independent vendors from across the province. Shoppers come for the quality and stay for the sense of community, discovering new makers every visit. The foundry has one location in Diamond Valley right now, but hopes to expand to multiple locations across the province by 2028.</p>
     </main>
     <?php include('includes/footer.php');?>
+    <script src='https://cdn.jsdelivr.net/npm/temporal-polyfill@0.3.0/global.min.js'></script>
+    <script src="script/carousel.js"></script>
 </body>
 </html>

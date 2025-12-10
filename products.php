@@ -106,36 +106,6 @@ if(isset($_POST['price'])){
         main a, form{
          color: #3C3833;
         }
-        @media (max-width: 1000px){
-            main{
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: repeat(auto-fill, auto);
-                gap: .5rem;
-                padding: 1rem .2rem;
-            }
-            .pagination{
-                grid-column: span 2;
-            }
-            main article{
-                font-size: small;
-                height: 100%;
-            }
-        }
-        @media(max-width: 780px){
-            .filters > div{
-                flex-direction: column;
-            }
-        }
-        @media(max-width: 600px){
-            .filters{
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .filters button[type='submit']{
-                align-self: flex-end;
-            }
-        }
     </style>
 </head>
 <body>
@@ -196,9 +166,9 @@ if(isset($_POST['price'])){
             $vendorsql = mysqli_query($connection,$vendor_query);
             $vendor = mysqli_fetch_assoc($vendorsql);
             ?>
-        <a href="details.php?id=<?php echo $prod_id;?>&var=0">   
+        <a href="details.php?id=<?php echo $prod_id;?>">   
             <article>
-                <img src="media/<?php echo $product["image"];?>" alt="<?php echo $product["img_alt"];?>" width="1024" height="1024">
+                <img src="media/<?php echo $product["image"];?>" alt="<?php echo $product["img_alt"];?>" width="1024" height="1024" loading="lazy">
                 <h2><?php echo $product["name"];?></h2>
                 <p><?php echo $vendor['name']?></p>
                 <p><?php echo $product["price"];?></p>

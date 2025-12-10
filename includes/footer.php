@@ -19,8 +19,10 @@
             <ul>
                 <li><img src="media/logos/instagramicon.svg" alt="">@WildRoseFoundry</li>
                 <li><img src="media/logos/twittericon.svg" alt="">@Foundry_WildRose</li>
-                <li><img src="media/logos/facebookicon.svg"     alt="">@TheWildRoseFoundry</li>
+                <li><img src="media/logos/facebookicon.svg" alt="">@TheWildRoseFoundry</li>
             </ul>
         </div>
     </div>
 </footer>
+<script src='https://cdn.jsdelivr.net/npm/temporal-polyfill@0.3.0/global.min.js'></script>
+<script src="script/global.js"></script>

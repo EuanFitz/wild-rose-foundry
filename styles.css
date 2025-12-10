@@ -122,28 +122,88 @@ main ul{
     list-style: none;
     padding: 0;
 }
+.container{
+    position: relative;
+    margin-bottom: 3rem;
+}
 .container ul{
     display:flex;
     overflow: hidden;
     overflow-x: scroll;
+    scrollbar-width: none;
     gap: 3rem;
     width: 100%;
     margin: 2rem auto;
-    color: var(--darktext)
+    color: var(--darktext);
+    scroll-snap-type: x mandatory;
 }
 .container ul li{
-    min-width: 290px;
+    min-width: 90%;
     border-radius: 10px 10px 0 0;
     overflow: hidden;
-    background:#ffffff50;
-}
-.container ul li div{
-    background: var(--card)
+    scroll-snap-align: center;
+    background: var(--card);
 }
 .container ul li img{
     background: var(--header);
     max-width: 100%;
     padding: .5rem;
+}
+.container ol{
+    display: flex;
+    gap: 1rem;
+    position: absolute;
+    list-style: none;
+    bottom: -2rem;
+    padding: 0;
+}
+.container ol button{
+    width: 20px;
+    height: 10px;
+}
+
+
+
+
+
+/* Details Page */
+.productimg{
+    max-width: 100%;
+    height: auto;
+}
+.thumb{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;   
+    justify-self: center;
+}
+.thumb img{
+    max-width: 100%;
+    height: auto;
+}
+.productinfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.price-button{
+    display: flex;
+    justify-content: space-between;
+}
+.variantimg{
+    background: none;
+    max-width: 250px;
+    max-height: 250px;
+    padding: 0;
+    transition: filter .1s ease-in;
+    overflow: hidden;
+}
+.variantiimg img{
+    height: 100%;
+    width: auto;
+}
+.variantimg img:hover{
+    filter:grayscale(40%);
 }
 
 
@@ -236,7 +296,37 @@ form button[type="submit"]:hover{
         align-self: flex-end;
     }
     .container{
-        max-width: 80%;
-        margin: 0 auto; 
+        max-width: 300px;
+        margin: 3rem auto;
     }
 }
+    @media (max-width: 1000px){
+            main{
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(auto-fill, auto);
+                gap: .5rem;
+                padding: 1rem .2rem;
+            }
+            .pagination{
+                grid-column: span 2;
+            }
+            main article{
+                font-size: small;
+                height: 100%;
+            }
+        }
+        @media(max-width: 780px){
+            .filters > div{
+                flex-direction: column;
+            }
+        }
+        @media(max-width: 600px){
+            .filters{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .filters button[type='submit']{
+                align-self: flex-end;
+            }
+        }
