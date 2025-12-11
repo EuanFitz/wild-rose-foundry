@@ -2,9 +2,10 @@
 const images = carousel.querySelectorAll('li');
 const slider = document.createElement('ol');
 
-images.forEach(feature =>{
+images.forEach((feature, i) =>{
     const list = document.createElement('li');
     const button = document.createElement('button');
+    button.innerText = `${i+1}`;
 
     list.appendChild(button);
     slider.appendChild(list);
@@ -14,8 +15,6 @@ const buttonNext = document.createElement('button');
 const buttonPrev = document.createElement('button');
 
 container.appendChild(slider);
-container.appendChild(buttonNext);
-container.appendChild(buttonPrev);
 
 
 container.addEventListener('click', (e) =>{
@@ -24,7 +23,7 @@ container.addEventListener('click', (e) =>{
     const position = Array.from(e.target.parentElement.parentElement.children).indexOf(e.target.parentElement);
         console.log(position);
     if(e.target.nodeName == "BUTTON"){
-        images[position].scrollIntoView({behavior: "smooth", block:"end", inline:"nearest"})
+        images[position].scrollIntoView({behavior: "smooth", block:"nearest", inline:"nearest"})
     }
 
 });

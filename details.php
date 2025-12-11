@@ -37,20 +37,18 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
     <link rel="stylesheet" href="styles.css">
     <style>
        main{
-            display:grid;
+            display: grid;
             grid-template-columns: 1fr 1fr;
             gap:3rem;
             padding: 1rem;
             justify-content: center;
             color: #3c3833;
         }
-        main > div{
-            max-width: 100%;
-        }
-        main section{
-            display:flex;
-            flex-direction: column;
-            justify-content: space-between;
+        @media(max-width: 600px){
+            main{
+                display: flex;
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -59,20 +57,20 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
     include('includes/header.php');
     ?>
     <main>
-        <div>
+        <div class="detailimgs">
             <img title="<?php echo $product['name']?>" id="productimg" class="productimg" src="media/<?php echo $product['image'];?>" alt="<?php echo $product['img_alt'];?>" width="1024" height="1024">
             <div class="thumb" id="thumb">
                 <?php
                 $variantsql = mysqli_query($connection,$varquery);
                 while($variant = mysqli_fetch_assoc($variantsql)){
                 ?>
-                <button class="variantimg"><img id="<?php echo $variant['variant_id']?>" title="<?php echo $variant['variant_value']?>" src="media/thumb/<?php echo $variant['image'];?>" height="250" width="250" alt="<?php echo $variant['img_alt']?>"></button>
+                <img class="variantimg" id="<?php echo $variant['variant_id']?>" title="<?php echo $variant['variant_value']?>" src="media/thumb/<?php echo $variant['image'];?>" height="250" width="250" alt="<?php echo $variant['img_alt']?>">
                 <?php
                 }
                 ?>
             </div>
         </div>
-        <section class="card">
+        <section class="card detailwords">
             <div class="productinfo">
                 <h2><?php echo $product['name']; ?></h2>
                 <p>By: <a href="vendors.php?id=<?php echo $vendor['vendor_id']; ?>"><?php echo $vendor['name'];?></a></p>

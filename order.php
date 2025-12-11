@@ -10,21 +10,25 @@ if(isset($_POST['id'])) {
     $ids = array_column($_SESSION['products'], 'id');
     $variants = array_column($_SESSION['products'], 'variant');
     
-    $inids = implode(" ,",$ids);
-    $invariants = implode(" '", $variants);
-if(isset($cart_item)){
-
-    if(!in_array($cart_item['id'],$ids) && !in_array($cart_item['variant'],$variants)) {
-    $_SESSION['products'][] = $cart_item;
-}
-}
+    if(isset($cart_item)){
+        
+        if($cart_item['variant'] == 0){
+        if(!in_array($cart_item['id'],$ids)){
+            $_SESSION['products'][] = $cart_item;
+        }
+        }else{
+            if(!in_array($cart_item['variant'],$variants)){
+                $_SESSION['products'][] = $cart_item;
+            }
+        }
+    }
+$price = 0;
 
 if(isset($_POST['clear'])){
     session_destroy();
 }
 
 //Variables
-$price = 0;
 
 ?>
 <!DOCTYPE html>
@@ -42,19 +46,6 @@ $price = 0;
         }
         main h2{
             grid-column: span 2;
-        }
-        section .order-overview{
-            background-color: var(--card);
-            border-radius: 15px;
-            border: 2px solid var(--darktext);
-            display: flex;
-            flex-direction: column;
-            max-width: 100%;
-            max-height: 300px;
-            overflow: hidden;
-            overflow-y: scroll;
-            gap: 1rem;
-            margin: 0 auto;
         }
         section div article{
             border-radius: 15px;
@@ -82,10 +73,12 @@ $price = 0;
             display: grid;
             grid-template-columns: 150px 300px;
         }
-        section form .clear{
-            background: rgb(138, 48, 48);
-            color: var(--light)
+        main section form div input{
+            background: var(--light);
+            border: 1px solid var(--button);
+            border-radius: 5px;
         }
+
         main section{
             width: 80%;
             margin: 2rem auto;
@@ -113,26 +106,57 @@ $price = 0;
         <h2>Shopping Cart</h2>
         <?php
         //Create order
-             if((count($_SESSION['products']))> 0){
-                
-                $query = "SELECT * FROM `products` WHERE product_id IN($inids)";
-                $productsql = mysqli_query($connection,$query);
+             if((count($_SESSION['products']))){
         ?>
         <section class="card">
             <div class="order-overview">
                 <?php
-                while($product = mysqli_fetch_assoc($productsql)){
+                foreach($_SESSION['products'] as $key => $item){
+                    $item_product = $_SESSION['products'][$key]['id'];
+                    $item_variant = $_SESSION['products'][$key]['variant'];
+                    
+                    if($item_variant !== "0"){
+                    $variantquery = "SELECT p.name, p.price, v.* FROM `products` p 
+                    JOIN `variants` v ON p.product_id = v.product_id 
+                    WHERE v.variant_id = $item_variant";
+
+                    $variantsql = mysqli_query($connection,$variantquery);  
+                    $variant_row = mysqli_fetch_assoc($variantsql);
+
+                    $price += ((float)$variant_row['price']);
+                    $varval = ucfirst($variant_row['variant_value']);
+                    $varkey = ucfirst($variant_row['variant_key']);
+                    ?>
+                    <article>
+                        <img src="media/thumb/<?php echo $variant_row['image'];?>" title="<?php echo $variant_row['variant_value']; ?>" alt="<?php echo $variant_row['img_alt']; ?>" height="250" width="250">
+                        <div>
+                            <h3><?php echo $variant_row['name']; ?></h3>
+                            <p><?php echo "$varkey:  $varval";?></p>
+                            <p><?php echo $variant_row['price']; ?></p>
+                        </div>
+                    </article>
+
+                <?php
+                }else{
+                    $query = "SELECT * FROM products WHERE product_id = $item_product";
+                    $productsql = mysqli_query($connection,$query);
+                    $product = mysqli_fetch_assoc($productsql);
+
                     $price += ((float)$product['price']);
-                ?>
-                <article>
-                    <img src="media/thumb/<?php echo $product['image']; ?>" alt="<?php echo $product['img_alt']; ?>" height="250" width="250">
-                    <div>
-                        <h3><?php echo $product['name']; ?></h3>
-                        <p><?php echo $product['price']; ?></p>
-                    </div>
-                </article>
-            <?php
-            }
+                    ?>
+
+                    <article>
+                        <img src="media/thumb/<?php echo $product['image']; ?>" alt="<?php echo $product['img_alt']; ?>" height="250" width="250">
+                         <div>
+                            <h3><?php echo $product['name']; ?></h3>
+                            <p><?php echo $product['price']; ?></p>
+                        </div>
+                    </article>
+
+
+                    <?php
+                }
+                }
             $tax = number_format(($price*.05), 2);
             $total = number_format(($price + $tax), 2);
             ?>

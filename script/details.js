@@ -3,7 +3,7 @@ thumb.addEventListener('click', (e) =>{
     console.log(e.target.nodeName);
     const imgsrc = e.target.src;
     const imgTitle = e.target.title;
-    const newVarid = e.target.title;
+    const newVarid = e.target.id;
     
     if(e.target.nodeName == "IMG"){
         productimg.src = imgsrc.replace(`/thumb`, '');
