@@ -30,11 +30,15 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php if(!isset($product)){ 
+    <title>
+        <?php if(!isset($product)){ 
         echo "Details";}else{
             echo $product['name'];
-        }?>|| WildRose.com</title>
-    <link rel="stylesheet" href="styles.css">
+        }?>|| WildRose.com
+    </title>
+
+    <?php include('includes/links.php');?>
+    
     <style>
        main{
             display: grid;

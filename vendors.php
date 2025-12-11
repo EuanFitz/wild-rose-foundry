@@ -6,8 +6,11 @@ $where = '';
 if(isset($_GET['id']) && $_GET['id'] !== ''){
     $vendor_id = $_GET['id'];
     $where .= " AND vendor_id = $vendor_id";
+        
+    $productquery = "SELECT * FROM products where vendor_id = $vendor_id";
+    $productsql = mysqli_query($connection,$productquery);
 }
-?>
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +26,7 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
     }else{
         echo "Vendors";
         }?> || WildRose</title>
-    <link rel="stylesheet" href="styles.css">
+    <?php include('includes/links.php');?>
 </head>
 <body>
     <?php
@@ -46,22 +49,43 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
         $vendoroptionsql = mysqli_query($connection,$query .= $where);
         while($vendor = mysqli_fetch_assoc($vendoroptionsql)){
             ?>
-            <section class="vendor">
+            <section class="vendor card">
             <a href="vendors.php?id=<?php echo $vendor['vendor_id'];?>"><img src="media/logos/<?php echo $vendor['logo']?>" alt="<?php echo $vendor['logo_alt'];?>" height="1024" width="1024"></a>
             <div class="card">
-                    <a href="vendors.php?id=<?php echo $vendor['vendor_id'];?>">
-                        <h2><?php echo $vendor['name'];?></h2>
-                        <p>Booth: <?php echo $vendor['booth_number'];?></p>
-                        <p><?php echo $vendor['bio'];?></p>
-                    </a>
-                        <div class="contact">
-                            <p>Email: <a><?php echo $vendor['email'];?></a></p>
-                            <a href="https://www.instagram.com/<?php echo $vendor['instagram'];?>/"><img src="media/logos/instagramicon.svg" alt="">@<?php echo $vendor['instagram'];?></a>
-                        </div>
+                <div>
+                    <h2><?php echo $vendor['name'];?></h2>
+                    <p>Booth: <?php echo $vendor['booth_number'];?></p>
+                </div>
+                    <p><?php echo $vendor['bio'];?></p>
+                    <div class="contact">
+                        <p>Email: <a><?php echo $vendor['email'];?></a></p>
+                        <a href="https://www.instagram.com/<?php echo $vendor['instagram'];?>/"><img src="media/logos/instagramiconblack.svg" width="50" height="50" alt=""><?php echo $vendor['instagram'];?></a>
+                    </div>
                 </div>
             </section>
          <?php 
         }
+        if(isset($vendor_id)){
+            echo '<section class="showproducts">';
+            while($product = mysqli_fetch_assoc($productsql)){
+            $prod_id = $product["product_id"];
+
+            $vendor_query = " SELECT v.* FROM `vendors` v JOIN `products` p ON v.vendor_id = p.vendor_id WHERE p.product_id = $prod_id ";
+            $vendorsql = mysqli_query($connection,$vendor_query);
+            $vendor = mysqli_fetch_assoc($vendorsql);
+            ?>
+        <a href="details.php?id=<?php echo $prod_id;?>">   
+            <article class="product">
+                <img src="media/<?php echo $product["image"];?>" alt="<?php echo $product["img_alt"];?>" width="1024" height="1024" loading="lazy">
+                <h2><?php echo $product["name"];?></h2>
+                <p><?php echo $vendor['name']?></p>
+                <p><?php echo $product["price"];?></p>
+            </article>
+        </a>
+        <?php
+    }
+        }
+        echo "</section>";
          ?>
     </main>
     <?php

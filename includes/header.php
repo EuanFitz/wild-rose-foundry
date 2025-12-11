@@ -1,5 +1,4 @@
 <header>
-    <p class="countdown" id="countdown">Christmas Sale on Now!</p>
     <div>
     <a class="brand" href="index.php">
         <img src="media/logos/wildrose-foundry-logo.avif" alt="">

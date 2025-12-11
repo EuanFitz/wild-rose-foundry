@@ -13,7 +13,7 @@ $mainsql = mysqli_query($connection,$query);
     <link rel="stylesheet" href="styles.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Wild Rose Foundry || WildRose.com</title>
-    <link rel="stylesheet" href="styles.css">
+    <?php include('includes/links.php');?>
 </head>
 <body>
     <?php include('includes/header.php');?>

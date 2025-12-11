@@ -53,50 +53,7 @@ if(isset($_POST['price'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products|| WildRose.com</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-    /* MAIN */
-        main{
-            display: grid;
-            grid-template-columns: repeat(3, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 2rem 1.5rem;
-        }
-        main article {
-            border: 3px solid #8C8276;
-            width: 100%;
-            border-radius: 10px 10px 0 0;
-            overflow: hidden;
-            background:#ffffff50;
-        }
-        main article > img{
-            max-width: 100%;
-            height: auto;
-        }
-        main a article h2, main a article p{
-            padding-left: .5rem;
-        }
-
-/* Repeating styles */
-        main a, form{
-         color: #3C3833;
-        }
-    @media (max-width: 1000px){
-    main{
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: repeat(auto-fill, auto);
-        gap: .5rem;
-        padding: 1rem .2rem;
-    }
-    .pagination{
-        grid-column: span 2;
-    }
-    main article{
-        font-size: small;
-        height: 100%;
-    }
-}
-    </style>
+    <?php include('includes/links.php');?>
 </head>
 <body>
     <?php
@@ -145,7 +102,7 @@ if(isset($_POST['price'])){
         </div>
         <button type="submit">Go</button>
     </form>
-    <main>
+    <main class="showproducts">
         <?php 
         $productsql = mysqli_query($connection,$fullquery);
         if(mysqli_num_rows($productsql)>0){
@@ -157,7 +114,7 @@ if(isset($_POST['price'])){
             $vendor = mysqli_fetch_assoc($vendorsql);
             ?>
         <a href="details.php?id=<?php echo $prod_id;?>">   
-            <article>
+            <article class="product">
                 <img src="media/<?php echo $product["image"];?>" alt="<?php echo $product["img_alt"];?>" width="1024" height="1024" loading="lazy">
                 <h2><?php echo $product["name"];?></h2>
                 <p><?php echo $vendor['name']?></p>

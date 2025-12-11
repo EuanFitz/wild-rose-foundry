@@ -37,7 +37,7 @@ if(isset($_POST['clear'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order || WildRose.com</title>
-    <link rel="stylesheet" href="styles.css">
+    <?php include('includes/links.php');?>
     <style>
        main{
             display: grid;
@@ -47,37 +47,6 @@ if(isset($_POST['clear'])){
         main h2{
             grid-column: span 2;
         }
-        section div article{
-            border-radius: 15px;
-            max-width: 90%;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 3fr;
-            gap: .5rem; 
-            box-shadow: 0 2px 5px var(--darktext);
-        }
-        section div article img{
-            border-radius: 15px 0 0 15px;
-            max-height: 100px;
-            width: auto;
-        }
-        .ordertotal{
-            padding: 2rem;
-        }
-        main section form{
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-        main section form div{
-            display: grid;
-            grid-template-columns: 150px 300px;
-        }
-        main section form div input{
-            background: var(--light);
-            border: 1px solid var(--button);
-            border-radius: 5px;
-        }
 
         main section{
             width: 80%;
@@ -85,10 +54,6 @@ if(isset($_POST['clear'])){
         }
         @media(max-width: 1000px){
             main{
-                display: flex;
-                flex-direction: column;
-            }
-            main section form div{
                 display: flex;
                 flex-direction: column;
             }
@@ -127,14 +92,16 @@ if(isset($_POST['clear'])){
                     $varval = ucfirst($variant_row['variant_value']);
                     $varkey = ucfirst($variant_row['variant_key']);
                     ?>
-                    <article>
-                        <img src="media/thumb/<?php echo $variant_row['image'];?>" title="<?php echo $variant_row['variant_value']; ?>" alt="<?php echo $variant_row['img_alt']; ?>" height="250" width="250">
-                        <div>
-                            <h3><?php echo $variant_row['name']; ?></h3>
-                            <p><?php echo "$varkey:  $varval";?></p>
-                            <p><?php echo $variant_row['price']; ?></p>
-                        </div>
-                    </article>
+                    <a href="details.php?id=<?php echo $item_product;?>">
+                        <article class="cartitem">
+                            <img src="media/thumb/<?php echo $variant_row['image'];?>" title="<?php echo $variant_row['variant_value']; ?>" alt="<?php echo $variant_row['img_alt']; ?>" height="250" width="250">
+                            <div>
+                                <h3><?php echo $variant_row['name']; ?></h3>
+                                <p><?php echo "$varkey:  $varval";?></p>
+                                <p><?php echo $variant_row['price']; ?></p>
+                            </div>
+                        </article>
+                    </a>
 
                 <?php
                 }else{
@@ -144,15 +111,15 @@ if(isset($_POST['clear'])){
 
                     $price += ((float)$product['price']);
                     ?>
-
-                    <article>
-                        <img src="media/thumb/<?php echo $product['image']; ?>" alt="<?php echo $product['img_alt']; ?>" height="250" width="250">
-                         <div>
-                            <h3><?php echo $product['name']; ?></h3>
-                            <p><?php echo $product['price']; ?></p>
-                        </div>
-                    </article>
-
+                    <a href="details.php?id=<?php echo $item_product;?>">
+                        <article class="cartitem">
+                            <img src="media/thumb/<?php echo $product['image']; ?>" alt="<?php echo $product['img_alt']; ?>" height="250" width="250">
+                            <div>
+                                <h3><?php echo $product['name']; ?></h3>
+                                <p><?php echo $product['price']; ?></p>
+                            </div>
+                        </article>
+                    </a>
 
                     <?php
                 }

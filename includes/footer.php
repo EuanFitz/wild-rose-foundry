@@ -17,9 +17,9 @@
         </nav>
         <div class="socials">
             <ul>
-                <li><img src="media/logos/instagramicon.svg" alt="">@WildRoseFoundry</li>
-                <li><img src="media/logos/twittericon.svg" alt="">@Foundry_WildRose</li>
-                <li><img src="media/logos/facebookicon.svg" alt="">@TheWildRoseFoundry</li>
+                <li><img src="media/logos/instagramicon.svg" width="50" height="50" alt="">@WildRoseFoundry</li>
+                <li><img src="media/logos/twittericon.svg" width="50" height="50" alt="">@Foundry_WildRose</li>
+                <li><img src="media/logos/facebookicon.svg" width="50" height="50" alt="">@WildRoseFoundry</li>
             </ul>
         </div>
     </div>
