@@ -3,6 +3,7 @@
     <a class="brand" href="index.php">
         <img src="media/logos/wildrose-foundry-logo.avif" alt="">
         <h1>Wild Rose Foundry</h1>
+        <p>Made by hand, inspired by place.</p>
     </a>
     <nav>
         <ul>

@@ -12,7 +12,7 @@
                 <li><a href="products.php">Products</a></li>
                 <li><a href="vendors.php">Vendors</a></li>
                 <li><a href="order.php">My Cart</a></li>
-                <li><a href="">Contact</a></li>
+                <li><a>Contact</a></li>
             </ul>
         </nav>
         <div class="socials">

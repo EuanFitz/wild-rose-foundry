@@ -6,6 +6,20 @@
     <title>(ITEM NAME) || WildRose.com</title>
     <link rel="stylesheet" href="/styles.css">
     <style>
+            main{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap:3rem;
+            padding: 1rem;
+            justify-content: center;
+            color: #3c3833;
+        }
+        @media(max-width: 600px){
+            main{
+                display: flex;
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
@@ -29,15 +43,15 @@
                 <div>
             <img id="productimg" class="productimg" src="/media/pcc-mug-16-river.avif" alt="A product photo of 16oz Mug from Prairie Clay Co.." width="" height="">
             <div class="thumb" id="thumb">
-                                <button class="variantimg"><img id="4" src="/media/thumb/pcc-mug-16-river.avif" height="250" width="250" alt="A product photo of 16oz Mug from Prairie Clay Co. in the River colour."></button>
-                                <button class="variantimg"><img id="2" src="/media/thumb/pcc-mug-16-sand.avif" height="250" width="250" alt="A product photo of 16oz Mug from Prairie Clay Co. in the Sand colour."></button>
-                                <button class="variantimg"><img id="1" src="/media/thumb/pcc-mug-16-forest.avif" height="250" width="250" alt="A product photo of 16oz Mug from Prairie Clay Co. in the Forest colour."></button>
-                                <button class="variantimg"><img id="44" src="/media/thumb/pcc-mug-16-ember.avif" height="250" width="250" alt="A product photo of 16oz Mug from Prairie Clay Co. in the Ember colour."></button>
+                                <img class="variantimg" title="poop1" data-key="Color" id="4" src="/media/thumb/pcc-mug-16-river.avif" height="250" width="250" alt="A product photo of 16oz Mug from Prairie Clay Co. in the River colour.">
+                                <img title="poop2" id="2" data-key="Color" class="variantimg" src="/media/thumb/pcc-mug-16-sand.avif" height="250" width="250" alt="A product photo of 16oz Mug from Prairie Clay Co. in the Sand colour.">
+                                <img title="poop3" class="variantimg" id="1" src="/media/thumb/pcc-mug-16-forest.avif" height="250" width="250" alt="A product photo of 16oz Mug from Prairie Clay Co. in the Forest colour.">
+                                <img title="poop4" class="variantimg" id="44" src="/media/thumb/pcc-mug-16-ember.avif" height="250" width="250" alt="A product photo of 16oz Mug from Prairie Clay Co. in the Ember colour.">
                             </div>
         </div>
-        <div class="productinfo">
-            <div>
-                <h2>16oz Mug</h2>
+        <div class="productinfo card">
+            <div id="productinfo">
+                <h2 id="productname">16oz Mug</h2>
                 <p>By: Vendor Name</p>
                 <p>Hand-thrown 12oz ceramic mug in multiple glaze colours.</p>
             </div>
@@ -80,5 +94,5 @@
         </ul>
     </div>
 </footer>
-<script src="/details.js"></script>
+<script src="/script/details.js"></script>
 </body></html>

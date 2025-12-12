@@ -44,15 +44,19 @@ header a, footer a{
     }
     /* Logo/Name */
     .brand{
-        display: flex;
         font-family: 'Josefin Sans', 'Lucida Sans Regular', 'Lucida Grande', 
         sans-serif;
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         max-height: 200px;
         max-width: 300px;
         align-items: center;
         justify-content: center;
         margin: 0 auto;
+    }
+    .brand p{
+        grid-column: span 2;
+        padding-bottom: 1ch;
     }
     .brand img{
         max-width: 150px;
@@ -137,9 +141,8 @@ header a, footer a{
     .container ol button{
         width: 20px;
         height: 30px;
-        background-color: var(--card);
-        color: var(--darktext);
-        border: 1px solid var(--darktext);
+        background: var(--card);
+        border: 1px solid var(--button);
         border-radius: 5px;
         transition: .2s ease-in-out;
     }
@@ -152,7 +155,7 @@ header a, footer a{
         top: 0;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: #ffffff90;
+        background: #ffffff90;
         color: var(--darktext);
         padding: .2rem .3rem;
         text-align: center;
@@ -162,6 +165,13 @@ header a, footer a{
     .about{
         width: 60%;
         margin: 2rem auto;
+    }
+    .active_button{
+        background: var(--header);
+        border-radius: 5px;
+    }
+    .active_button button{
+         color: var(--light);
     }
 
 
@@ -174,6 +184,7 @@ header a, footer a{
     box-shadow: var(--box-shadow);
     padding: 1rem;
 }
+
 
 
 
@@ -368,6 +379,9 @@ form input[type=submit]:hover{
     gap: 2rem;
     margin-top: 3rem;
 }
+.showproducts h3{
+    grid-column: span 3;
+}
 
 
 
@@ -377,7 +391,6 @@ form input[type=submit]:hover{
 footer{
     background: var(--button);
     display: flex;
-    flex-direction: column;
 }
 footer ul{
     list-style: none;
@@ -385,13 +398,13 @@ footer ul{
 }
 .footerlinks{
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 150px 1fr;
 }
 .footerlinks ul{
     padding: .5rem;
 }
 footer .socials {
-    text-decoration: underline;
+    text-decoration: underline var(--light);
 }
 footer .socials li{
     display: flex;
@@ -511,6 +524,11 @@ form button[type="submit"]:hover{
 .nocontentbutton:hover{
     background: #00000060;
 }
+
+
+
+
+
 /* Media Queries */
 
 @media (min-width: 900px) {
@@ -526,6 +544,25 @@ form button[type="submit"]:hover{
     footer .footerlinks{
         align-self: flex-end;
     }
+}
+
+@media (min-width: 1500px){
+    .showproducts{
+            grid-template-columns: repeat(4, minmax(300px, 1fr));
+    }
+    .pagination, .showproducts h3{
+        grid-column: span 4;
+
+    }
+
+}
+@media (min-width: 2000px){
+    .showproducts{
+            grid-template-columns: repeat(5, minmax(300px, 1fr));
+    }
+    .pagination, .showproducts h3{
+        grid-column: span 5;
+}
 }
 
 
@@ -554,7 +591,7 @@ form button[type="submit"]:hover{
         gap: .5rem;
         padding: 1rem .2rem;
     }
-    .pagination{
+    .pagination, .showproducts h3{
         grid-column: span 2;
     }
     .products{
@@ -575,7 +612,10 @@ form button[type="submit"]:hover{
     }
 
 }
-@media(max-width: 600px){
+@media(max-width: 650px){
+    footer{
+        flex-direction: column;
+    }
     .filters{
         display: flex;
         flex-direction: column;

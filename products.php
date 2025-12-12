@@ -8,27 +8,53 @@ JOIN `vendors` v ON p.vendor_id = v.vendor_id
 JOIN `product_category` pc ON p.product_id = pc.product_id 
 JOIN `categories` c ON pc.category_id = c.category_id 
 WHERE 1";
+
+
+$paginationquery = "SELECT COUNT(*) FROM `products` p 
+JOIN `vendors` v ON p.vendor_id = v.vendor_id 
+JOIN `product_category` pc ON p.product_id = pc.product_id 
+JOIN `categories` c ON pc.category_id = c.category_id 
+WHERE 1";
+
 $vendoroption_query = "SELECT * FROM `vendors`";
 $category_query = "SELECT * FROM `categories`";
 
+
+
+//Error contatinating with 2 similar queries so ill double the variables in order to only use them once
 $groupproduct = " GROUP BY p.product_id";
 $wherequery = '';
 $orderquery = '';
+
+
+
+//Pagination queries
+$groupproductpag = " GROUP BY p.product_id";
+$wherequerypag = '';
+$orderquerypag = '';
+
+
 
 //Filtering
 if(isset($_POST['category']) && $_POST['category'] !== ''){
     $category = $_POST['category'];
     $wherequery .= " AND c.category_id = $category";
+    $wherequerypag .= " AND c.category_id = $category";
 }
 if(isset($_POST['vendor']) && $_POST['vendor'] !== ''){
     $vendor = $_POST['vendor'];
     $wherequery .= " AND v.vendor_id = $vendor";
+    $wherequerypag .= " AND v.vendor_id = $vendor";
 }
 if(isset($_POST['price'])){
     $price = $_POST['price'];
     $orderquery = " ORDER BY p.price $price";
+    $orderquerypag = " ORDER BY p.price $price";
 }
 
+
+
+//Find products_per_page and limit needed
 $products_per_page = 24;
 
 if(!isset($_GET['start'])){
@@ -38,14 +64,23 @@ if(!isset($_GET['start'])){
 }
 $limit = " LIMIT $start, $products_per_page";
 
+
+
+
 //Query concatination
 $fullquery = $queryproduct .= $wherequery .= $groupproduct .= $orderquery .= $limit;
 
-$productsql = mysqli_query($connection,$fullquery);
+$fullqueryNoLimit = $paginationquery .= $wherequerypag .= $groupproductpag .= $orderquerypag;
 
-$count = mysqli_num_rows($productsql);
-echo $count;
+
+
 //Pagination
+$paginationsql = mysqli_query($connection,$fullqueryNoLimit);
+
+$count = mysqli_num_rows($paginationsql);
+
+
+
 
 
 $links_needed= ceil($count/$products_per_page);
@@ -96,11 +131,11 @@ $links_needed= ceil($count/$products_per_page);
         <div>
             <span>Price</span>
             <div>
-                <label for="low-high">High</label>
+                <label for="low-high">Low</label>
                 <input type="radio" name="price" id="low-high" value="ASC">
             </div>
             <div>
-                <label for="high-low">Low</label>
+                <label for="high-low">High</label>
                 <input type="radio" name="price" id="high-low" value="DESC">
             </div>
         </div>
@@ -108,6 +143,7 @@ $links_needed= ceil($count/$products_per_page);
     </form>
     <main class="showproducts">
         <?php 
+        $productsql = mysqli_query($connection,$fullquery);
         if(mysqli_num_rows($productsql)>0){
         while($product = mysqli_fetch_assoc($productsql)){
             $prod_id = $product["product_id"];
@@ -126,6 +162,8 @@ $links_needed= ceil($count/$products_per_page);
         </a>
         <?php
     }
+}else{
+    echo '<p class="card">No results were found</p>';
 }?>
     <div class="pagination">
         <?php

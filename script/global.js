@@ -9,7 +9,7 @@ countdown.classList.add('countdown');
 headerElement.prepend(countdown);
 
 //Default timer
-const tillMidnightMilli = 10000;
+let tillMidnightMilli = 10000;
 
 function christmasCountdown(){
         const today = Temporal.Now.plainDateISO();
@@ -41,7 +41,7 @@ function timeTillMidnight(){
             microsecond: 0
         });
 
-        tillMidnightMilli = todayTime.until(midnight).total({ unit: "milliseconds" });
+         tillMidnightMilli = todayTime.until(midnight).total({ unit: "milliseconds" });
 }
 
 //Midnight reset

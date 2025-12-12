@@ -168,10 +168,10 @@ if(isset($_POST['clear'])){
         <div class="card ordered">
             <p>Your cart is empty!</p>
             <a class="nocontentbutton" href="products.php">Keep shopping</a>
+        </div>
             <?php
                 }
             ?>
-        </div>
     </main>
         <?php
     include('includes/footer.php');

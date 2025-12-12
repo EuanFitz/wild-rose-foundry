@@ -18,11 +18,6 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
     $vendorquery = "SELECT v.* FROM vendors v 
     JOIN products p ON v.vendor_id = p.vendor_id WHERE p.product_id = $prod_id";
 }
-        if(isset($query)){
-            $productsql = mysqli_query($connection,$query);
-            $product = mysqli_fetch_assoc($productsql);
-            $vendorsql = mysqli_query($connection,$vendorquery);
-            $vendor = mysqli_fetch_assoc($vendorsql);
         
 ?>
 <!DOCTYPE html>
@@ -36,9 +31,7 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
             echo $product['name'];
         }?>|| WildRose.com
     </title>
-
     <?php include('includes/links.php');?>
-    
     <style>
        main{
             display: grid;
@@ -57,10 +50,15 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
     </style>
 </head>
 <body>
-    <?php
-    include('includes/header.php');
-    ?>
+    <?php include('includes/header.php');?>
     <main>
+    <?php
+            if(isset($query)){
+                $productsql = mysqli_query($connection,$query);
+                $product = mysqli_fetch_assoc($productsql);
+                $vendorsql = mysqli_query($connection,$vendorquery);
+                $vendor = mysqli_fetch_assoc($vendorsql);
+    ?>
         <div class="detailimgs">
             <img title="<?php echo $product['name']?>" id="productimg" class="productimg" src="media/<?php echo $product['image'];?>" alt="<?php echo $product['img_alt'];?>" width="1024" height="1024">
             <div class="thumb" id="thumb">
@@ -68,7 +66,7 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
                 $variantsql = mysqli_query($connection,$varquery);
                 while($variant = mysqli_fetch_assoc($variantsql)){
                 ?>
-                <img class="variantimg" id="<?php echo $variant['variant_id']?>" title="<?php echo $variant['variant_value']?>" src="media/thumb/<?php echo $variant['image'];?>" height="250" width="250" alt="<?php echo $variant['img_alt']?>">
+                <img class="variantimg" id="<?php echo $variant['variant_id'];?>" title="<?php echo ucfirst($variant['variant_value']);?>" data-key="<?php echo ucfirst($variant['variant_key']);?>" src="media/thumb/<?php echo $variant['image'];?>" height="250" width="250" alt="<?php echo $variant['img_alt'];?>">
                 <?php
                 }
                 ?>
@@ -76,7 +74,7 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
         </div>
         <section class="card detailwords">
             <div class="productinfo">
-                <h2><?php echo $product['name']; ?></h2>
+                <h2 id="productname"><?php echo $product['name']; ?></h2>
                 <p>By: <a href="vendors.php?id=<?php echo $vendor['vendor_id']; ?>"><?php echo $vendor['name'];?></a></p>
                 <p><?php echo $product['description']; ?></p>
                  <ul>
@@ -91,7 +89,7 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
             </ul>
             </div>
             <div class="price-button">
-                <p>$38.00</p>
+                <p><?php echo $product['price'];?></p>
                 <form action="order.php" method="POST">
                     <input type="hidden" name="id" value="<?php echo $product['product_id'];?>">
                     <input type="hidden" id="varid" name=var value="0">

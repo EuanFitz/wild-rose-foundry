@@ -21,9 +21,17 @@ container.addEventListener('click', (e) =>{
     // console.log(e);
     // console.log(e.target.parentElement.parentElement.children);
     const position = Array.from(e.target.parentElement.parentElement.children).indexOf(e.target.parentElement);
-        console.log(position);
+    
     if(e.target.nodeName == "BUTTON"){
         images[position].scrollIntoView({behavior: "smooth", block:"nearest", inline:"nearest"})
+
+        /*Make buttons grey*/
+        
+        slider.childNodes.forEach(featurebutton =>{
+            featurebutton.classList.remove("active_button");
+        });
+        slider.childNodes[position].classList.add("active_button");
+
     }
 
 });

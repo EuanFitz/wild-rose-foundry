@@ -16,7 +16,7 @@ require('includes/connection.php');
    ?>
    <main>
    <?php
-   if(isset($_POST['complete']))
+   if(isset($_POST['complete'])){
             //Order information
             $first = mysqli_real_escape_string($connection,$_POST['first']);
             $last = mysqli_real_escape_string($connection,$_POST['last']);
@@ -54,6 +54,16 @@ require('includes/connection.php');
                 <p>Please have your order number ready on pickup.</p>
                 <a class="nocontentbutton" href="products.php">Keep shopping</a>
             </div>
+            <?php
+            }else{
+        ?>
+        <div class="card ordered">
+            <p>No order...</p>
+            <a class="nocontentbutton" href="products.php">Keep shopping</a>
+        </div>
+        <?php
+    }
+            ?>
         </main>
         <?php
         include("includes/footer.php");

@@ -27,13 +27,15 @@ $mainsql = mysqli_query($connection,$query);
                         $vendor_query = "SELECT name FROM vendors WHERE vendor_id = $vendorid";
                         $vendor = mysqli_fetch_assoc(mysqli_query($connection,$vendor_query));
                 ?>
-                <li>
-                    <img src="media/<?php echo $featured['image']?>" alt="<?php echo $featured['img_alt']?>">
-                    <div>
-                        <h2><? echo $featured['name']; ?></h2>
-                        <p><? echo $featured['price']; ?></p>
-                        <p><? echo $vendor['name']; ?></p>
-                    </div>
+                <li class="products">
+                    <a href="details.php?id=<?php echo $featured['product_id'];?>">
+                        <img src="media/<?php echo $featured['image']?>" alt="<?php echo $featured['img_alt']?>">
+                        <div>
+                            <h2><? echo $featured['name']; ?></h2>
+                            <p><? echo $featured['price']; ?></p>
+                            <p><? echo $vendor['name']; ?></p>
+                        </div>
+                    </a>
                 </li>
                 <?php
                     }
