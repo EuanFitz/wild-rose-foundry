@@ -22,6 +22,7 @@ $mainsql = mysqli_query($connection,$query);
             <p class="featuretag">Featured Items</p>
             <ul id ="carousel">
                 <?php
+                //Pull all featured items
                     while($featured = mysqli_fetch_assoc($mainsql)){
                         $vendorid = $featured['vendor_id'];
                         $vendor_query = "SELECT name FROM vendors WHERE vendor_id = $vendorid";

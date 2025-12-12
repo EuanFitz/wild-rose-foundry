@@ -18,12 +18,12 @@ container.appendChild(slider);
 
 
 container.addEventListener('click', (e) =>{
-    // console.log(e);
-    // console.log(e.target.parentElement.parentElement.children);
+   
+
     const position = Array.from(e.target.parentElement.parentElement.children).indexOf(e.target.parentElement);
     
     if(e.target.nodeName == "BUTTON"){
-        images[position].scrollIntoView({behavior: "smooth", block:"nearest", inline:"nearest"})
+        images[position].scrollIntoView({behavior: "smooth", block:"nearest"})
 
         /*Make buttons grey*/
         

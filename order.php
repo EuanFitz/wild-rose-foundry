@@ -1,15 +1,26 @@
 <?php
 include('includes/global.php');
 require('includes/connection.php');
+
+//Variables for later
+    //Get current page url  
+    $current_page = $_SERVER['PHP_SELF'];
+    $price = 0;
+
+//Create cart item
 if(isset($_POST['id'])) {
     $cart_item = [
         "id" => $_POST['id'],
         "variant" => $_POST['var']
     ];
 }
+
+
+//Pull arrays to later check if items in cart exist
     $ids = array_column($_SESSION['products'], 'id');
     $variants = array_column($_SESSION['products'], 'variant');
     
+    //Check if cart item exists
     if(isset($cart_item)){
         
         if($cart_item['variant'] == 0){
@@ -22,10 +33,12 @@ if(isset($_POST['id'])) {
             }
         }
     }
-$price = 0;
 
+
+    //Clear cart and reload page
 if(isset($_POST['clear'])){
     session_destroy();
+    header("Location: $current_page");
 }
 
 //Variables
@@ -46,6 +59,8 @@ if(isset($_POST['clear'])){
         }
         main h2{
             grid-column: span 2;
+            padding: .5rem;
+            text-shadow: 0 3px 2px #00000055;
         }
 
         main section{
@@ -76,10 +91,13 @@ if(isset($_POST['clear'])){
         <section class="card">
             <div class="order-overview">
                 <?php
+
+                //Actually pull cart items.
                 foreach($_SESSION['products'] as $key => $item){
                     $item_product = $_SESSION['products'][$key]['id'];
                     $item_variant = $_SESSION['products'][$key]['variant'];
-                    
+
+                    //If no array is set  aka doesn't 0 zero. Grab variant image
                     if($item_variant !== "0"){
                     $variantquery = "SELECT p.name, p.price, v.* FROM `products` p 
                     JOIN `variants` v ON p.product_id = v.product_id 
@@ -99,11 +117,15 @@ if(isset($_POST['clear'])){
                                 <h3><?php echo $variant_row['name']; ?></h3>
                                 <p><?php echo "$varkey:  $varval";?></p>
                                 <p><?php echo $variant_row['price']; ?></p>
+                                <form action="order.php" method="POST">
+                                    <button type="submit" class="removeitem" value="">X</button>
+                                </form>
                             </div>
                         </article>
                     </a>
 
                 <?php
+                //In this case no variant was set (variat = 0) so display only product with
                 }else{
                     $query = "SELECT * FROM products WHERE product_id = $item_product";
                     $productsql = mysqli_query($connection,$query);
@@ -124,6 +146,7 @@ if(isset($_POST['clear'])){
                     <?php
                 }
                 }
+                //Quick maths for calculating final cost
             $tax = number_format(($price*.05), 2);
             $total = number_format(($price + $tax), 2);
             ?>
@@ -163,6 +186,7 @@ if(isset($_POST['clear'])){
             </form>
         </section>
         <?php
+        //Cart = empty
             }else{
         ?>
         <div class="card ordered">

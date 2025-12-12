@@ -37,8 +37,27 @@ header a, footer a{
     text-shadow: var(--text-shadow);
 }
     /* Countdown */
-    header > p{
+    .countdown{
+        position: relative;
+        display: flex;
+        justify-content: center;
         background: var(--christmas);
+        text-align: center;
+        padding: 15px 0;
+    }
+    .countdown p{
+        z-index: 1;
+    }
+    .ribbon{
+        z-index: 0;
+        position: absolute;
+        left: 75%;
+        top: 5px;
+        height: 150px;
+        width: auto;
+    
+    }
+    header > div > p{
         text-align: center;
         padding: 15px 0;
     }
@@ -342,7 +361,17 @@ form input[type=submit]:hover{
     max-width: 100%;
     height: auto;
 }
-
+/* Categories */
+.categories{
+    display: flex;
+    width: fit-content;
+    border: 1px solid var(--darktext);
+    background-color: var(--card);
+}
+.categoryitem{
+    color: var(--button);
+    padding: .5rem;
+}
 
 
 
@@ -610,11 +639,15 @@ form button[type="submit"]:hover{
         gap: .2rem;
         margin: 0;
     }
-
 }
 @media(max-width: 650px){
     footer{
         flex-direction: column;
+    }
+    .footerlinks{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     .filters{
         display: flex;
@@ -626,5 +659,11 @@ form button[type="submit"]:hover{
     }
     .container ul{
         width: 300px;
+    }
+    .ribbon{
+        left: 60%;
+        height: 100px;
+        width: 100px;
+        top: 35px;
     }
 }

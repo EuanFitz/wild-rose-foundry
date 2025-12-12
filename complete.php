@@ -16,8 +16,9 @@ require('includes/connection.php');
    ?>
    <main>
    <?php
+   //Check if the order has actually been created.
    if(isset($_POST['complete'])){
-            //Order information
+            //Order information from order page. Sanitized.
             $first = mysqli_real_escape_string($connection,$_POST['first']);
             $last = mysqli_real_escape_string($connection,$_POST['last']);
             $email = mysqli_real_escape_string($connection,$_POST['email']);
@@ -39,7 +40,7 @@ require('includes/connection.php');
             $orderid = (int)$order['order_id'];
             
 
-            //Populate order_product_variable page
+            //Populate order_product_variable page and insert into table with variant if set if variant = 0 Variant row will be NULL
             foreach($_SESSION['products'] as $key => $item){
                 $order_product = (int)$_SESSION['products'][$key]['id'];
                 $order_variant = (int)$_SESSION['products'][$key]['variant'];
@@ -55,6 +56,7 @@ require('includes/connection.php');
                 <a class="nocontentbutton" href="products.php">Keep shopping</a>
             </div>
             <?php
+            //No order to show.
             }else{
         ?>
         <div class="card ordered">

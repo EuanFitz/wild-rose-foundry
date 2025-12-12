@@ -1,20 +1,25 @@
 <?php
 include('includes/global.php');
 require('includes/connection.php');
+//Check that a product was selected and isn't an empty string.
 if(isset($_GET['id']) && $_GET['id'] !== ''){
     $prod_id = $_GET['id'];
+
+    //Grab product
     $query = "SELECT * FROM products WHERE product_id = $prod_id";
-    
+
+    //Grab variants related to product
     $varquery ="SELECT v.* FROM variants v 
     JOIN products p ON v.product_id = p.product_id
     WHERE v.product_id = $prod_id";
-    
+
+    //Grab all categories related to product
     $categoryquery = "SELECT c.* FROM categories c
     JOIN product_category pc ON c.category_id = pc.category_id
     JOIN products p ON pc.product_id = p.product_id
     WHERE pc.product_id = $prod_id
     GROUP BY c.category_id";
-    
+    //Vendor related to product
     $vendorquery = "SELECT v.* FROM vendors v 
     JOIN products p ON v.vendor_id = p.vendor_id WHERE p.product_id = $prod_id";
 }
@@ -26,7 +31,9 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?php if(!isset($product)){ 
+        <?php 
+        //Change title depending on product.
+        if(!isset($product)){ 
         echo "Details";}else{
             echo $product['name'];
         }?>|| WildRose.com
@@ -53,6 +60,7 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
     <?php include('includes/header.php');?>
     <main>
     <?php
+    //Grab current product and vendor.
             if(isset($query)){
                 $productsql = mysqli_query($connection,$query);
                 $product = mysqli_fetch_assoc($productsql);
@@ -77,12 +85,12 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
                 <h2 id="productname"><?php echo $product['name']; ?></h2>
                 <p>By: <a href="vendors.php?id=<?php echo $vendor['vendor_id']; ?>"><?php echo $vendor['name'];?></a></p>
                 <p><?php echo $product['description']; ?></p>
-                 <ul>
+                <ul class="categories">
             <?php   
                 $categorysql = mysqli_query($connection,$categoryquery);
                 while($categories = mysqli_fetch_assoc($categorysql)){
             ?>
-                    <li><?php echo $categories['name'];?></li>
+                    <li class="categoryitem"><?php echo $categories['name'];?></li>
             <?php
                 }
             ?>

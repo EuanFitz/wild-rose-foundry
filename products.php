@@ -79,10 +79,6 @@ $paginationsql = mysqli_query($connection,$fullqueryNoLimit);
 
 $count = mysqli_num_rows($paginationsql);
 
-
-
-
-
 $links_needed= ceil($count/$products_per_page);
 
 ?>
@@ -143,11 +139,13 @@ $links_needed= ceil($count/$products_per_page);
     </form>
     <main class="showproducts">
         <?php 
+        //All products depending on filters
         $productsql = mysqli_query($connection,$fullquery);
         if(mysqli_num_rows($productsql)>0){
         while($product = mysqli_fetch_assoc($productsql)){
             $prod_id = $product["product_id"];
 
+            //Grab vendor name for product
             $vendor_query = " SELECT v.* FROM `vendors` v JOIN `products` p ON v.vendor_id = p.vendor_id WHERE p.product_id = $prod_id ";
             $vendorsql = mysqli_query($connection,$vendor_query);
             $vendor = mysqli_fetch_assoc($vendorsql);
@@ -163,6 +161,7 @@ $links_needed= ceil($count/$products_per_page);
         <?php
     }
 }else{
+    //Incase filters return no options.
     echo '<p class="card">No results were found</p>';
 }?>
     <div class="pagination">

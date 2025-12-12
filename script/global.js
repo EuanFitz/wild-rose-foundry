@@ -2,7 +2,7 @@
 const headerElement = document.querySelector('header');
 
 //Make countdown for progressive JS
-const countdown = document.createElement('p');
+const countdown = document.createElement('div')
 countdown.classList.add('countdown');
 
 //Prepend at the start of header
@@ -20,9 +20,9 @@ function christmasCountdown(){
         
         // Countdown either to this christmas or next christmas
         if(tillChristmas < 0){
-            countdown.innerText = `${tillNextChristmas} days till next Christmas`
+            countdown.innerHTML= `<p>${tillNextChristmas} days till next Christmas</p><img class="ribbon" width="75" height="75" src="/media/christmas-ribbon.svg">`
         }else{
-            countdown.innerText = `${tillChristmas} days till Christmas!`
+            countdown.innerHTML = `<p>${tillChristmas} days till Christmas!</p><img class="ribbon" width="75" height="75" src="/media/christmas-ribbon.svg">`
     }
 }
 
@@ -49,11 +49,9 @@ function updateAtMidnight() {
     //Re run christmasCountDown
     christmasCountdown();
 
-
+    console.log("New Day!")
     timeTillMidnight();
 }
 
-updateAtMidnight();
-
-// Make it reload every 10 seconds
+christmasCountdown();
 setTimeout(updateAtMidnight(),tillMidnightMilli);
