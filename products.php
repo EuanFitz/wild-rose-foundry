@@ -15,21 +15,6 @@ $groupproduct = " GROUP BY p.product_id";
 $wherequery = '';
 $orderquery = '';
 
-//Pagination
-$products_per_page = 24;
-
-$rows_num = mysqli_query($connection, "SELECT COUNT(*) FROM products");
-$rowstotal = mysqli_fetch_assoc($rows_num);
-$count = $rowstotal['COUNT(*)'];
-
-$links_needed= ceil($count/$products_per_page);
-if(!isset($_GET['start'])){
-    $start = 0;
-}else{
-    $start = $_GET['start'];
-}
-$limit = " LIMIT $start, $products_per_page";
-
 //Filtering
 if(isset($_POST['category']) && $_POST['category'] !== ''){
     $category = $_POST['category'];
@@ -44,8 +29,27 @@ if(isset($_POST['price'])){
     $orderquery = " ORDER BY p.price $price";
 }
 
+$products_per_page = 24;
+
+if(!isset($_GET['start'])){
+    $start = 0;
+}else{
+    $start = $_GET['start'];
+}
+$limit = " LIMIT $start, $products_per_page";
+
 //Query concatination
-    $fullquery = $queryproduct .= $wherequery .= $groupproduct .= $orderquery .= $limit;
+$fullquery = $queryproduct .= $wherequery .= $groupproduct .= $orderquery .= $limit;
+
+$productsql = mysqli_query($connection,$fullquery);
+
+$count = mysqli_num_rows($productsql);
+echo $count;
+//Pagination
+
+
+$links_needed= ceil($count/$products_per_page);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -104,7 +108,6 @@ if(isset($_POST['price'])){
     </form>
     <main class="showproducts">
         <?php 
-        $productsql = mysqli_query($connection,$fullquery);
         if(mysqli_num_rows($productsql)>0){
         while($product = mysqli_fetch_assoc($productsql)){
             $prod_id = $product["product_id"];
