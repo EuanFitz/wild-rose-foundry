@@ -97,7 +97,7 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
             </ul>
             </div>
             <div class="price-button">
-                <p><?php echo $product['price'];?></p>
+                <p>$<?php echo $product['price'];?></p>
                 <form action="order.php" method="POST">
                     <input type="hidden" name="id" value="<?php echo $product['product_id'];?>">
                     <input type="hidden" id="varid" name=var value="0">

@@ -20,9 +20,9 @@ function christmasCountdown(){
         
         // Countdown either to this christmas or next christmas
         if(tillChristmas < 0){
-            countdown.innerHTML= `<p>${tillNextChristmas} days till next Christmas</p><img class="ribbon" width="75" height="75" src="/media/christmas-ribbon.svg">`
+            countdown.innerHTML= `<p>${tillNextChristmas} days till next Christmas</p><img class="ribbon" width="75" height="75" src="media/christmas-ribbon.svg">`
         }else{
-            countdown.innerHTML = `<p>${tillChristmas} days till Christmas!</p><img class="ribbon" width="75" height="75" src="/media/christmas-ribbon.svg">`
+            countdown.innerHTML = `<p>${tillChristmas} days till Christmas!</p><img class="ribbon" width="75" height="75" src="media/christmas-ribbon.svg">`
     }
 }
 
