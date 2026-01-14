@@ -30,7 +30,7 @@ $mainsql = mysqli_query($connection,$query);
                 ?>
                 <li class="products">
                     <a href="details.php?id=<?php echo $featured['product_id'];?>">
-                        <img src="media/<?php echo $featured['image']?>" alt="<?php echo $featured['img_alt']?>">
+                        <img src="media/<?php echo $featured['image']?>" alt="<?php echo $featured['img_alt']?>" width="1024" height="1024">
                         <div>
                             <h2><? echo $featured['name']; ?></h2>
                             <p><? echo $featured['price']; ?></p>
