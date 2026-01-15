@@ -117,9 +117,6 @@ if(isset($_POST['clear'])){
                                 <h3><?php echo $variant_row['name']; ?></h3>
                                 <p><?php echo "$varkey:  $varval";?></p>
                                 <p><?php echo $variant_row['price']; ?></p>
-                                <form action="order.php" method="POST">
-                                    <button type="submit" class="removeitem" value="">X</button>
-                                </form>
                             </div>
                         </article>
                     </a>

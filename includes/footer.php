@@ -12,14 +12,14 @@
                 <li><a href="products.php">Products</a></li>
                 <li><a href="vendors.php">Vendors</a></li>
                 <li><a href="order.php">My Cart</a></li>
-                <li><a>Contact</a></li>
+                <li><a href="mailto:euan.fitzpatirck@edu.sait.ca">Contact</a></li>
             </ul>
         </nav>
         <div class="socials">
             <ul>
-                <li><img src="media/logos/instagramicon.svg" width="50" height="50" alt="">@WildRoseFoundry</li>
-                <li><img src="media/logos/twittericon.svg" width="50" height="50" alt="">@Foundry_WildRose</li>
-                <li><img src="media/logos/facebookicon.svg" width="50" height="50" alt="">@WildRoseFoundry</li>
+                <li><a href="https://www.instagram.com/wildrosefoundry"><img src="media/logos/instagramicon.svg" width="50" height="50" alt="">@WildRoseFoundry</a></li>
+                <li><a href="https://www.twitter.com/foundry_wildrose"><img src="media/logos/twittericon.svg" width="50" height="50" alt="">@Foundry_WildRose</a></li>
+                <li><a href="https://www.facebook.com/WildRoseFoundry"><img src="media/logos/facebookicon.svg" width="50" height="50" alt="">@WildRoseFoundry</a></li>
             </ul>
         </div>
     </div>

@@ -60,7 +60,7 @@ if(isset($_GET['id']) && $_GET['id'] !== ''){
                     </div>
                         <p><?php echo $vendor['bio'];?></p>
                         <div class="contact">
-                            <p>Email: <a><?php echo $vendor['email'];?></a></p>
+                            <p>Email: <a href="euan.fitzpatrick@edu.sait.ca"><?php echo $vendor['email'];?></a></p>
                             <a href="https://www.instagram.com/<?php echo $vendor['instagram'];?>/"><img src="media/logos/instagramiconblack.svg" width="50" height="50" alt=""><?php echo $vendor['instagram'];?></a>
                         </div>
                     </div>
